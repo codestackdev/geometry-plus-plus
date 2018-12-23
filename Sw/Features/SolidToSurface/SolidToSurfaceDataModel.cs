@@ -22,6 +22,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.SolidToSurface
         [ParameterEditBody]
         [ControlAttribution(typeof(Resources), nameof(Resources.solid_body))]
         [ControlOptions(height: 60)]
+        [Description("Solid bodies to convert to surface")]
         public List<IBody2> Bodies { get; set; }
     }
 }

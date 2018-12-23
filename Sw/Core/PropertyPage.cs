@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace CodeStack.Community.GeometryPlusPlus.Core
 {
     [ComVisible(true)]
+    [Guid("B8A7D8B3-FC3C-4833-86D2-D36E35F63B8C")]
     public class PropertyPageHandler : PropertyManagerPageHandlerEx
     {
     }

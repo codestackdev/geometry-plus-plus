@@ -139,4 +139,28 @@
   <data name="trim_surface_region" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\trim-surface-region.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Licenses" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Licenses.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Geometry++</value>
+  </data>
+  <data name="WorkDir" xml:space="preserve">
+    <value>CodeStack\Geometry++</value>
+  </data>
+  <data name="eula" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eula.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="about_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\about-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UpdateUrl" xml:space="preserve">
+    <value>https://www.codestack.net/labs/solidworks/geometry-plus-plus/version-info.json</value>
+  </data>
 </root>

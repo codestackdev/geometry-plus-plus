@@ -16,6 +16,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.SolidToSurface
     [Options("SolidToSurface")]
     [ComVisible(true)]
     [ProgId(PROG_ID)]
+    [Guid("753D2372-D1AF-4E22-94F2-6E6416394C9C")]
     public class SolidToSurfaceMacroFeature : GeometryMacroFeature<SolidToSurfaceDataModel>
     {
         internal const string PROG_ID = "CodeStack.GeometryPlusPlus.SolidToSurfaceMacroFeature";

@@ -22,12 +22,14 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.TrimSurfacesByRegion
         [ParameterEditBody]
         [ControlOptions(height: 60)]
         [ControlAttribution(swControlBitmapLabelType_e.swBitmapLabel_SelectFaceSurface)]
+        [Description("Surface bodies to trim")]
         public List<IBody2> TargetBodies { get; set; }
 
         [SelectionBox(2, swSelectType_e.swSelSKETCHES, swSelectType_e.swSelSKETCHREGION)]
         [ControlAttribution(swControlBitmapLabelType_e.swBitmapLabel_SelectBoundary)]
         [ControlOptions(height: 60)]
         [ParameterSelection]
+        [Description("Trim tools (either sketches or sketch regions)")]
         public List<object> TrimTools { get; set; }
     }
 }

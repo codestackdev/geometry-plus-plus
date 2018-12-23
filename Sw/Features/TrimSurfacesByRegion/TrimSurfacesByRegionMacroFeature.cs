@@ -18,6 +18,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.TrimSurfacesByRegion
     [Options("TrimSurface")]
     [ComVisible(true)]
     [ProgId(PROG_ID)]
+    [Guid("16ABB9D1-887E-4FD1-BE67-847977261E73")]
     public class TrimSurfacesByRegionMacroFeature : GeometryMacroFeature<TrimSurfacesByRegionDataModel>
     {
         internal const string PROG_ID = "CodeStack.GeometryPlusPlus.TrimSurfacesByRegionMacroFeature";

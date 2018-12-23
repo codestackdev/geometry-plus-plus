@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLFOLDER" />
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="AddInComRegGroup">
+            <Component Id="cmp849D4B4936651C1CE332AF90A33A6A10" Directory="INSTALLFOLDER" Guid="*">
+                <Class Id="{16ABB9D1-887E-4FD1-BE67-847977261E73}" Context="InprocServer32" Description="CodeStack.Community.GeometryPlusPlus.Features.TrimSurfacesByRegion.TrimSurfacesByRegionMacroFeature" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="CodeStack.GeometryPlusPlus.TrimSurfacesByRegionMacroFeature" Description="CodeStack.Community.GeometryPlusPlus.Features.TrimSurfacesByRegion.TrimSurfacesByRegionMacroFeature" />
+                </Class>
+                <Class Id="{39FD6EA8-3113-40BA-A1D6-405CFF3931BF}" Context="InprocServer32" Description="CodeStack.Community.GeometryPlusPlus.Features.ExtrudeSurfaceCap.ExtrudeSurfaceCapMacroFeature" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="CodeStack.GeometryPlusPlus.ExtrudeSurfaceCapMacroFeature" Description="CodeStack.Community.GeometryPlusPlus.Features.ExtrudeSurfaceCap.ExtrudeSurfaceCapMacroFeature" />
+                </Class>
+                <Class Id="{45B95E54-91F5-4043-BC30-20FD89CAB578}" Context="InprocServer32" Description="CodeStack.Community.GeometryPlusPlus.AddIn" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="CodeStack.Community.GeometryPlusPlus.AddIn" Description="CodeStack.Community.GeometryPlusPlus.AddIn" />
+                </Class>
+                <Class Id="{753D2372-D1AF-4E22-94F2-6E6416394C9C}" Context="InprocServer32" Description="CodeStack.Community.GeometryPlusPlus.Features.SolidToSurface.SolidToSurfaceMacroFeature" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="CodeStack.GeometryPlusPlus.SolidToSurfaceMacroFeature" Description="CodeStack.Community.GeometryPlusPlus.Features.SolidToSurface.SolidToSurfaceMacroFeature" />
+                </Class>
+                <Class Id="{A0856B88-393B-40BE-B523-B86D918CC91B}" Context="InprocServer32" Description="CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet.BodiesFilletMacroFeature" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="CodeStack.GeometryPlusPlus.BodiesFilletMacroFeature" Description="CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet.BodiesFilletMacroFeature" />
+                </Class>
+                <Class Id="{B8A7D8B3-FC3C-4833-86D2-D36E35F63B8C}" Context="InprocServer32" Description="CodeStack.Community.GeometryPlusPlus.Core.PropertyPageHandler" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="CodeStack.Community.GeometryPlusPlus.Core.PropertyPageHandler" Description="CodeStack.Community.GeometryPlusPlus.Core.PropertyPageHandler" />
+                </Class>
+                <File Id="fil27CDC1DA33A8DDB8DC8CCEDCB9B4B5B6" KeyPath="yes" Source="$(var.SourceOutDir)\CodeStack.Community.GeometryPlusPlus.dll" />
+                <RegistryValue Root="HKCR" Key="CLSID\{16ABB9D1-887E-4FD1-BE67-847977261E73}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{16ABB9D1-887E-4FD1-BE67-847977261E73}\InprocServer32\0.1.0.0" Name="Class" Value="CodeStack.Community.GeometryPlusPlus.Features.TrimSurfacesByRegion.TrimSurfacesByRegionMacroFeature" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{16ABB9D1-887E-4FD1-BE67-847977261E73}\InprocServer32\0.1.0.0" Name="Assembly" Value="CodeStack.Community.GeometryPlusPlus, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{16ABB9D1-887E-4FD1-BE67-847977261E73}\InprocServer32\0.1.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{16ABB9D1-887E-4FD1-BE67-847977261E73}\InprocServer32\0.1.0.0" Name="CodeBase" Value="file:///[#fil27CDC1DA33A8DDB8DC8CCEDCB9B4B5B6]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{16ABB9D1-887E-4FD1-BE67-847977261E73}\InprocServer32" Name="Class" Value="CodeStack.Community.GeometryPlusPlus.Features.TrimSurfacesByRegion.TrimSurfacesByRegionMacroFeature" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{16ABB9D1-887E-4FD1-BE67-847977261E73}\InprocServer32" Name="Assembly" Value="CodeStack.Community.GeometryPlusPlus, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{16ABB9D1-887E-4FD1-BE67-847977261E73}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{16ABB9D1-887E-4FD1-BE67-847977261E73}\InprocServer32" Name="CodeBase" Value="file:///[#fil27CDC1DA33A8DDB8DC8CCEDCB9B4B5B6]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{39FD6EA8-3113-40BA-A1D6-405CFF3931BF}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{39FD6EA8-3113-40BA-A1D6-405CFF3931BF}\InprocServer32\0.1.0.0" Name="Class" Value="CodeStack.Community.GeometryPlusPlus.Features.ExtrudeSurfaceCap.ExtrudeSurfaceCapMacroFeature" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{39FD6EA8-3113-40BA-A1D6-405CFF3931BF}\InprocServer32\0.1.0.0" Name="Assembly" Value="CodeStack.Community.GeometryPlusPlus, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{39FD6EA8-3113-40BA-A1D6-405CFF3931BF}\InprocServer32\0.1.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{39FD6EA8-3113-40BA-A1D6-405CFF3931BF}\InprocServer32\0.1.0.0" Name="CodeBase" Value="file:///[#fil27CDC1DA33A8DDB8DC8CCEDCB9B4B5B6]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{39FD6EA8-3113-40BA-A1D6-405CFF3931BF}\InprocServer32" Name="Class" Value="CodeStack.Community.GeometryPlusPlus.Features.ExtrudeSurfaceCap.ExtrudeSurfaceCapMacroFeature" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{39FD6EA8-3113-40BA-A1D6-405CFF3931BF}\InprocServer32" Name="Assembly" Value="CodeStack.Community.GeometryPlusPlus, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{39FD6EA8-3113-40BA-A1D6-405CFF3931BF}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{39FD6EA8-3113-40BA-A1D6-405CFF3931BF}\InprocServer32" Name="CodeBase" Value="file:///[#fil27CDC1DA33A8DDB8DC8CCEDCB9B4B5B6]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{45B95E54-91F5-4043-BC30-20FD89CAB578}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{45B95E54-91F5-4043-BC30-20FD89CAB578}\InprocServer32\0.1.0.0" Name="Class" Value="CodeStack.Community.GeometryPlusPlus.AddIn" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{45B95E54-91F5-4043-BC30-20FD89CAB578}\InprocServer32\0.1.0.0" Name="Assembly" Value="CodeStack.Community.GeometryPlusPlus, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{45B95E54-91F5-4043-BC30-20FD89CAB578}\InprocServer32\0.1.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{45B95E54-91F5-4043-BC30-20FD89CAB578}\InprocServer32\0.1.0.0" Name="CodeBase" Value="file:///[#fil27CDC1DA33A8DDB8DC8CCEDCB9B4B5B6]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{45B95E54-91F5-4043-BC30-20FD89CAB578}\InprocServer32" Name="Class" Value="CodeStack.Community.GeometryPlusPlus.AddIn" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{45B95E54-91F5-4043-BC30-20FD89CAB578}\InprocServer32" Name="Assembly" Value="CodeStack.Community.GeometryPlusPlus, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{45B95E54-91F5-4043-BC30-20FD89CAB578}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{45B95E54-91F5-4043-BC30-20FD89CAB578}\InprocServer32" Name="CodeBase" Value="file:///[#fil27CDC1DA33A8DDB8DC8CCEDCB9B4B5B6]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{753D2372-D1AF-4E22-94F2-6E6416394C9C}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{753D2372-D1AF-4E22-94F2-6E6416394C9C}\InprocServer32\0.1.0.0" Name="Class" Value="CodeStack.Community.GeometryPlusPlus.Features.SolidToSurface.SolidToSurfaceMacroFeature" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{753D2372-D1AF-4E22-94F2-6E6416394C9C}\InprocServer32\0.1.0.0" Name="Assembly" Value="CodeStack.Community.GeometryPlusPlus, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{753D2372-D1AF-4E22-94F2-6E6416394C9C}\InprocServer32\0.1.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{753D2372-D1AF-4E22-94F2-6E6416394C9C}\InprocServer32\0.1.0.0" Name="CodeBase" Value="file:///[#fil27CDC1DA33A8DDB8DC8CCEDCB9B4B5B6]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{753D2372-D1AF-4E22-94F2-6E6416394C9C}\InprocServer32" Name="Class" Value="CodeStack.Community.GeometryPlusPlus.Features.SolidToSurface.SolidToSurfaceMacroFeature" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{753D2372-D1AF-4E22-94F2-6E6416394C9C}\InprocServer32" Name="Assembly" Value="CodeStack.Community.GeometryPlusPlus, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{753D2372-D1AF-4E22-94F2-6E6416394C9C}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{753D2372-D1AF-4E22-94F2-6E6416394C9C}\InprocServer32" Name="CodeBase" Value="file:///[#fil27CDC1DA33A8DDB8DC8CCEDCB9B4B5B6]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A0856B88-393B-40BE-B523-B86D918CC91B}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A0856B88-393B-40BE-B523-B86D918CC91B}\InprocServer32\0.1.0.0" Name="Class" Value="CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet.BodiesFilletMacroFeature" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A0856B88-393B-40BE-B523-B86D918CC91B}\InprocServer32\0.1.0.0" Name="Assembly" Value="CodeStack.Community.GeometryPlusPlus, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A0856B88-393B-40BE-B523-B86D918CC91B}\InprocServer32\0.1.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A0856B88-393B-40BE-B523-B86D918CC91B}\InprocServer32\0.1.0.0" Name="CodeBase" Value="file:///[#fil27CDC1DA33A8DDB8DC8CCEDCB9B4B5B6]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A0856B88-393B-40BE-B523-B86D918CC91B}\InprocServer32" Name="Class" Value="CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet.BodiesFilletMacroFeature" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A0856B88-393B-40BE-B523-B86D918CC91B}\InprocServer32" Name="Assembly" Value="CodeStack.Community.GeometryPlusPlus, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A0856B88-393B-40BE-B523-B86D918CC91B}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A0856B88-393B-40BE-B523-B86D918CC91B}\InprocServer32" Name="CodeBase" Value="file:///[#fil27CDC1DA33A8DDB8DC8CCEDCB9B4B5B6]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B8A7D8B3-FC3C-4833-86D2-D36E35F63B8C}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B8A7D8B3-FC3C-4833-86D2-D36E35F63B8C}\InprocServer32\0.1.0.0" Name="Class" Value="CodeStack.Community.GeometryPlusPlus.Core.PropertyPageHandler" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B8A7D8B3-FC3C-4833-86D2-D36E35F63B8C}\InprocServer32\0.1.0.0" Name="Assembly" Value="CodeStack.Community.GeometryPlusPlus, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B8A7D8B3-FC3C-4833-86D2-D36E35F63B8C}\InprocServer32\0.1.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B8A7D8B3-FC3C-4833-86D2-D36E35F63B8C}\InprocServer32\0.1.0.0" Name="CodeBase" Value="file:///[#fil27CDC1DA33A8DDB8DC8CCEDCB9B4B5B6]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B8A7D8B3-FC3C-4833-86D2-D36E35F63B8C}\InprocServer32" Name="Class" Value="CodeStack.Community.GeometryPlusPlus.Core.PropertyPageHandler" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B8A7D8B3-FC3C-4833-86D2-D36E35F63B8C}\InprocServer32" Name="Assembly" Value="CodeStack.Community.GeometryPlusPlus, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B8A7D8B3-FC3C-4833-86D2-D36E35F63B8C}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B8A7D8B3-FC3C-4833-86D2-D36E35F63B8C}\InprocServer32" Name="CodeBase" Value="file:///[#fil27CDC1DA33A8DDB8DC8CCEDCB9B4B5B6]" Type="string" Action="write" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+</Wix>

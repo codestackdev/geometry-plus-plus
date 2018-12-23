@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Build\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -61,12 +61,17 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Xarial.Signal2Go, Version=0.2.0.0, Culture=neutral, PublicKeyToken=6dcec729ca6a1943, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xarial.Signal2Go.0.2.0\lib\net461\Xarial.Signal2Go.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xarial.VPages.Framework, Version=0.3.0.0, Culture=neutral, PublicKeyToken=6dcec729ca6a1943, processorArchitecture=MSIL">
       <HintPath>..\packages\Xarial.VPages.Framework.0.3.0\lib\net40\Xarial.VPages.Framework.dll</HintPath>
     </Reference>
@@ -76,6 +81,10 @@
     <Compile Include="Base\GeometryMacroFeature.cs" />
     <Compile Include="Core\PropertyPage.cs" />
     <Compile Include="Exceptions\UserErrorException.cs" />
+    <Compile Include="Features\BodiesFillet\BodiesFilletDataModel.cs" />
+    <Compile Include="Features\BodiesFillet\BodiesFilletMacroFeature.cs" />
+    <Compile Include="Features\ExtrudeSurfaceCap\ExtrudeSurfaceCapDataModel.cs" />
+    <Compile Include="Features\ExtrudeSurfaceCap\ExtrudeSurfaceCapMacroFeature.cs" />
     <Compile Include="Features\SolidToSurface\SolidToSurfaceDataModel.cs" />
     <Compile Include="Features\SolidToSurface\SolidToSurfaceMacroFeature.cs" />
     <Compile Include="Features\TrimSurfacesByRegion\TrimSurfacesByRegionDataModel.cs" />
@@ -86,8 +95,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\eula.rtf" />
     <None Include="Resources\extrude-surface-caps.png" />
   </ItemGroup>
   <ItemGroup>
@@ -112,7 +132,22 @@
   <ItemGroup>
     <None Include="Resources\trim-surface-region.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Licenses.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\about-icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"%25WIX%25\bin\heat.exe" file "$(TargetPath)" -ag -srd -cg "AddInComRegGroup" -var var.SourceOutDir -dr INSTALLFOLDER -o "..\Installer\AddInReg.wxs"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="Geometry++" Language="1033" Version="0.1.0.0" Manufacturer="CodeStack" UpgradeCode="{56083FFE-D237-4BC0-A853-BA1C65BC9F68}">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of Geometry++ is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<UIRef Id="WixUI_InstallDir" />
+		<UIRef Id="WixUI_Common" />
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+		<Icon Id="MainIconId" SourceFile="Resources\icon.ico" />
+		<Property Id="ARPPRODUCTICON" Value="MainIconId" />
+		<WixVariable Id="WixUIBannerBmp" Value="Resources\banner.bmp" />
+		<WixVariable Id="WixUIDialogBmp" Value="Resources\dialog.bmp" />
+		<WixVariable Id="WixUILicenseRtf" Value="Resources\eula.rtf" />
+
+		<Feature Id="ProductFeature" Title="Setup" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+			<ComponentGroupRef Id="AddInComRegGroup" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFiles64Folder">
+				<Directory Id="CodeStackDirId" Name="CodeStack">
+					<Directory Id="INSTALLFOLDER" Name="Geometry++" />
+				</Directory>
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<Component Id="Reg" Guid="{74869559-1017-44C3-B0F1-5E0BDDC5AEAB}">
+				<RegistryValue Root="HKCU" Key="Software\SolidWorks\AddInsStartup\{45B95E54-91F5-4043-BC30-20FD89CAB578}" Value="1" Type="integer" Action="write" />
+				<RegistryValue Root="HKLM" Key="Software\SolidWorks\Addins\{45B95E54-91F5-4043-BC30-20FD89CAB578}" Value="0" Type="integer" Action="write" />
+				<RegistryValue Root="HKLM" Key="Software\SolidWorks\Addins\{45B95E54-91F5-4043-BC30-20FD89CAB578}" Name="Description" Value="Additional geometry functionality for SOLIDWORKS" Type="string" Action="write" />
+				<RegistryValue Root="HKLM" Key="Software\SolidWorks\Addins\{45B95E54-91F5-4043-BC30-20FD89CAB578}" Name="Title" Value="Geometry++" Type="string" Action="write" />
+			</Component>
+			<Component Id="interops" Guid="{DED8C037-EE62-4B2E-B67E-98B6C3C6251D}">
+				<File Id="SolidWorks.Interop.sldworks.dllID" Name="SolidWorks.Interop.sldworks.dll" Source="$(var.SourceOutDir)\SolidWorks.Interop.sldworks.dll" />
+				<File Id="SolidWorks.Interop.swconst.dllID" Name="SolidWorks.Interop.swconst.dll" Source="$(var.SourceOutDir)\SolidWorks.Interop.swconst.dll" />
+				<File Id="SolidWorks.Interop.swpublished.dllID" Name="SolidWorks.Interop.swpublished.dll" Source="$(var.SourceOutDir)\SolidWorks.Interop.swpublished.dll" />
+				<File Id="SolidWorksTools.dllID" Name="SolidWorksTools.dll" Source="$(var.SourceOutDir)\SolidWorksTools.dll" />
+			</Component>
+			<Component Id="swex" Guid="{2929F250-EA8C-439F-A5E3-3A93A660A504}">
+				<File Id="CodeStack.SwEx.AddIn.dllID" Name="CodeStack.SwEx.AddIn.dll" Source="$(var.SourceOutDir)\CodeStack.SwEx.AddIn.dll" />
+				<File Id="CodeStack.SwEx.Common.dllID" Name="CodeStack.SwEx.Common.dll" Source="$(var.SourceOutDir)\CodeStack.SwEx.Common.dll" />
+				<File Id="CodeStack.SwEx.MacroFeature.dllID" Name="CodeStack.SwEx.MacroFeature.dll" Source="$(var.SourceOutDir)\CodeStack.SwEx.MacroFeature.dll" />
+				<File Id="CodeStack.SwEx.PMPage.dllID" Name="CodeStack.SwEx.PMPage.dll" Source="$(var.SourceOutDir)\CodeStack.SwEx.PMPage.dll" />
+			</Component>
+			<Component Id="xarial" Guid="{307CCEA0-70A4-43AA-8DB7-26A96A32D2C0}">
+				<File Id="Xarial.VPages.Framework.dllID" Name="Xarial.VPages.Framework.dll" Source="$(var.SourceOutDir)\Xarial.VPages.Framework.dll" />
+				<File Id="Xarial.Signal2Go.dllID" Name="Xarial.Signal2Go.dll" Source="$(var.SourceOutDir)\Xarial.Signal2Go.dll" />
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
