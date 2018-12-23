@@ -21,6 +21,7 @@ namespace CodeStack.Community.GeometryPlusPlus
         //TODO: redundancy - make commands to load from the available macro features
 
         [Title("Geometry++")]
+        [Icon(typeof(Resources), nameof(Resources.geometry_plus_plus))]
         private enum Commands_e
         {
             [Icon(typeof(Resources), nameof(Resources.solid_to_surface))]
@@ -28,10 +29,20 @@ namespace CodeStack.Community.GeometryPlusPlus
             [CommandItemInfo(true, true, swWorkspaceTypes_e.Part, true)]
             SolidToSurface,
 
-            [Icon(typeof(Resources), nameof(Resources.solid_to_surface))]
+            [Icon(typeof(Resources), nameof(Resources.trim_surface_region))]
             [Title("Trim Surface By Region")]
             [CommandItemInfo(true, true, swWorkspaceTypes_e.Part, true)]
-            TrimSurfaceByRegion
+            TrimSurfaceByRegion,
+
+            [Icon(typeof(Resources), nameof(Resources.extrude_surface_caps))]
+            [Title("Extrude Surface Cap")]
+            [CommandItemInfo(true, true, swWorkspaceTypes_e.Part, true)]
+            ExtrudeSurfaceCap,
+
+            [Icon(typeof(Resources), nameof(Resources.fillet))]
+            [Title("Bodies Fillet")]
+            [CommandItemInfo(true, true, swWorkspaceTypes_e.Part, true)]
+            BodiesFillet
         }
 
         public override bool OnConnect()
@@ -57,6 +68,10 @@ namespace CodeStack.Community.GeometryPlusPlus
                         new TrimSurfacesByRegionMacroFeature().Insert(App, App.IActiveDoc2);
                         break;
                     }
+
+                default:
+                    App.SendMsgToUser("Not implemented");
+                    break;
             }
         }
     }

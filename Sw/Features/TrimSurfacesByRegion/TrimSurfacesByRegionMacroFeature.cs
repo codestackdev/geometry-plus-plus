@@ -14,7 +14,7 @@ using SolidWorks.Interop.swconst;
 namespace CodeStack.Community.GeometryPlusPlus.Features.TrimSurfacesByRegion
 {
 
-    [Icon(typeof(Resources), nameof(Resources.solid_to_surface))]
+    [Icon(typeof(Resources), nameof(Resources.trim_surface_region))]
     [Options("TrimSurface")]
     [ComVisible(true)]
     [ProgId(PROG_ID)]

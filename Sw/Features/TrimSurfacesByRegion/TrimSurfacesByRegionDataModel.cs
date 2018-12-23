@@ -12,10 +12,10 @@ using System.Threading.Tasks;
 
 namespace CodeStack.Community.GeometryPlusPlus.Features.TrimSurfacesByRegion
 {
-    [PageOptions(typeof(Resources), nameof(Resources.solid_to_surface),
+    [PageOptions(typeof(Resources), nameof(Resources.trim_surface_region),
         swPropertyManagerPageOptions_e.swPropertyManagerOptions_CancelButton | swPropertyManagerPageOptions_e.swPropertyManagerOptions_OkayButton)]
-    [Message("Select solid bodies to convert to surface bodies", "Convert Solid To Surface")]
-    [DisplayName("Convert Solid To Surface")]
+    [Message("Trims selected surface bodies with selected region", "rim Surfaces By Region")]
+    [DisplayName("Trim Surfaces By Region")]
     public class TrimSurfacesByRegionDataModel
     {
         [SelectionBox(1, swSelectType_e.swSelSURFACEBODIES)]

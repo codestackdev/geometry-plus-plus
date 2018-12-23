@@ -117,14 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="extrude_surface_caps" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\extrude-surface-caps.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fillet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fillet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="geometry_plus_plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\geometry-plus-plus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="MacroFeatureErrorInvalidParameters" xml:space="preserve">
     <value>Invalid parameters</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="solid_body" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\solid-body.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="solid_to_surface" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\solid-to-surface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trim_surface_region" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trim-surface-region.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
