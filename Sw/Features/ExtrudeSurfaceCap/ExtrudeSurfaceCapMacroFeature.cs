@@ -12,7 +12,7 @@ using CodeStack.Community.GeometryPlusPlus.Exceptions;
 
 namespace CodeStack.Community.GeometryPlusPlus.Features.ExtrudeSurfaceCap
 {
-    [Icon(typeof(Resources), nameof(Resources.extrude_surface_caps))]
+    [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.extrude_surface_caps))]
     [Options("ExtrudeSurfaceCap")]
     [ComVisible(true)]
     [ProgId(PROG_ID)]

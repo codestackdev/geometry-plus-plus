@@ -12,7 +12,7 @@ using CodeStack.Community.GeometryPlusPlus.Exceptions;
 
 namespace CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet
 {
-    [Icon(typeof(Resources), nameof(Resources.fillet))]
+    [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.fillet))]
     [Options("BodiesFillet")]
     [ComVisible(true)]
     [ProgId(PROG_ID)]

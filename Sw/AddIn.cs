@@ -31,34 +31,34 @@ namespace CodeStack.Community.GeometryPlusPlus
     {
         //TODO: redundancy - make commands to load from the available macro features
 
-        [Title("Geometry++")]
-        [Icon(typeof(Resources), nameof(Resources.geometry_plus_plus))]
+        [SwEx.Common.Attributes.Title("Geometry++")]
+        [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.geometry_plus_plus))]
         private enum Commands_e
         {
-            [Icon(typeof(Resources), nameof(Resources.solid_to_surface))]
-            [Title("Convert Solid To Surface")]
+            [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.solid_to_surface))]
+            [SwEx.Common.Attributes.Title("Convert Solid To Surface")]
             [CommandItemInfo(true, true, swWorkspaceTypes_e.Part, true)]
             SolidToSurface,
 
-            [Icon(typeof(Resources), nameof(Resources.trim_surface_region))]
-            [Title("Trim Surface By Region")]
+            [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.trim_surface_region))]
+            [SwEx.Common.Attributes.Title("Trim Surface By Region")]
             [CommandItemInfo(true, true, swWorkspaceTypes_e.Part, true)]
             TrimSurfaceByRegion,
 
-            [Icon(typeof(Resources), nameof(Resources.extrude_surface_caps))]
-            [Title("Extrude Surface Cap")]
+            [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.extrude_surface_caps))]
+            [SwEx.Common.Attributes.Title("Extrude Surface Cap")]
             [CommandItemInfo(true, true, swWorkspaceTypes_e.Part, true)]
             ExtrudeSurfaceCap,
 
-            [Icon(typeof(Resources), nameof(Resources.fillet))]
-            [Title("Bodies Fillet")]
+            [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.fillet))]
+            [SwEx.Common.Attributes.Title("Bodies Fillet")]
             [CommandItemInfo(true, true, swWorkspaceTypes_e.Part, true)]
             BodiesFillet,
 
-            [Title("About...")]
+            [SwEx.Common.Attributes.Title("About...")]
             [Description("About Geometry++")]
             [CommandItemInfo(true, false, swWorkspaceTypes_e.All)]
-            [Icon(typeof(Resources), nameof(Resources.about_icon))]
+            [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.about_icon))]
             About
         }
 

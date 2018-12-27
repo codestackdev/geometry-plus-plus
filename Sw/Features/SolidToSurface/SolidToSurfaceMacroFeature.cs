@@ -9,10 +9,11 @@ using CodeStack.Community.GeometryPlusPlus.Exceptions;
 using CodeStack.Community.GeometryPlusPlus.Properties;
 using CodeStack.SwEx.MacroFeature.Attributes;
 using System.Runtime.InteropServices;
+using SolidWorks.Interop.swconst;
 
 namespace CodeStack.Community.GeometryPlusPlus.Features.SolidToSurface
 {
-    [Icon(typeof(Resources), nameof(Resources.solid_to_surface))]
+    [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.solid_to_surface))]
     [Options("SolidToSurface")]
     [ComVisible(true)]
     [ProgId(PROG_ID)]

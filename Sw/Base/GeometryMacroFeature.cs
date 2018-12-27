@@ -23,10 +23,24 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
 
         private List<IBody2> m_CurrentEditBodies;
         private List<IBody2> m_CurrentPreviewBodies;
+        private PageClosedDelegate<TPage> m_CurrentCloseHandler;
 
+        private PropertyPage<TPage> GetPage(ISldWorks app)
+        {
+            if (m_Page == null)
+            {
+                m_Page = new PropertyPage<TPage>(app);
+                m_Page.DataChanged += OnDataChanged;
+                m_Page.PageClosed += OnPageClosed;
+                m_Page.PageApplying += OnPageApplying;
+            }
+
+            return m_Page;
+        }
+        
         internal void Insert(ISldWorks app, IModelDoc2 model)
         {
-            InitPropertyPage(app, model, null, null, new TParams(), OnFeatureInsertCompleted);
+            ShowPropertyPage(app, model, null, null, new TParams(), OnFeatureInsertCompleted);
         }
 
         private void OnFeatureInsertCompleted(IModelDoc2 model, IFeature feat, IMacroFeatureData featData, TPage data, bool isOk)
@@ -70,7 +84,6 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
 
                 foreach (var editBody in newEditBodies)
                 {
-                    //editBody.HideBody(true);
                     editBody.DisableDisplay = true;
                     editBody.DisableHighlight = true;
                 }
@@ -106,7 +119,6 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
             {
                 foreach (var editBody in editBodiesToShow)
                 {
-                    //editBody.HideBody(false);
                     editBody.DisableDisplay = false;
                     editBody.DisableHighlight = false;
                     m_CurrentEditBodies.Remove(editBody);
@@ -135,26 +147,21 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
 
             var parameters = GetParameters(feature, featData, model);
 
-            InitPropertyPage(app, model, feature, featData, parameters, OnFeatureEditCompleted);
+            ShowPropertyPage(app, model, feature, featData, parameters, OnFeatureEditCompleted);
             
             return true;
         }
-
-        private void InitPropertyPage(ISldWorks app, IModelDoc2 model, IFeature feat,
+        
+        private void ShowPropertyPage(ISldWorks app, IModelDoc2 model, IFeature feat,
             IMacroFeatureData featData, TParams parameters, PageClosedDelegate<TPage> closeHandler)
         {
             m_CurrentEditBodies = new List<IBody2>();
             m_CurrentPreviewBodies = new List<IBody2>();
-
-            model.ClearSelection2(true);
+            m_CurrentCloseHandler = closeHandler;
 
             var data = ConvertParamsToPage(parameters);
-
-            m_Page = new PropertyPage<TPage>(app, model, feat, featData, data);
-            m_Page.DataChanged += OnDataChanged;
-            m_Page.PageClosed += closeHandler;
-            m_Page.PageApplying += OnPageApplying;
-            m_Page.Show();
+            
+            GetPage(app).Show(model, feat, featData, data);
 
             PreviewGeometry(app, model, parameters);
         }
@@ -184,6 +191,11 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
         {
             var parameters = ConvertPageToParams(data);
             PreviewGeometry(app, model, parameters);
+        }
+
+        private void OnPageClosed(IModelDoc2 model, IFeature feat, IMacroFeatureData featData, TPage data, bool isOk)
+        {
+            m_CurrentCloseHandler?.Invoke(model, feat, featData, data, isOk);
         }
 
         private void OnFeatureEditCompleted(IModelDoc2 model, IFeature feat, IMacroFeatureData featData, TPage data, bool isOk)
