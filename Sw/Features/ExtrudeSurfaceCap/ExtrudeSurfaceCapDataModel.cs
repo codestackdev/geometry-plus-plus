@@ -11,11 +11,7 @@ using System.Threading.Tasks;
 
 namespace CodeStack.Community.GeometryPlusPlus.Features.ExtrudeSurfaceCap
 {
-    [PageOptions(typeof(Resources), nameof(Resources.extrude_surface_caps),
-    swPropertyManagerPageOptions_e.swPropertyManagerOptions_CancelButton
-    | swPropertyManagerPageOptions_e.swPropertyManagerOptions_OkayButton)]
     [Message("Select surface to extrude with caps", "Extrude Surface With Caps")]
-    [DisplayName("Extrude Surface With Caps")]
     public class ExtrudeSurfaceCapDataModel
     {
         [SelectionBox(swSelectType_e.swSelSKETCHES, swSelectType_e.swSelSKETCHREGION)]

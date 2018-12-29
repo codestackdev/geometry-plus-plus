@@ -35,11 +35,11 @@ namespace CodeStack.Community.GeometryPlusPlus.Core
         private IFeature m_Feat;
         private IMacroFeatureData m_FeatData;
 
-        internal PropertyPage(ISldWorks app) 
+        internal PropertyPage(ISldWorks app, IPageSpec spec) 
         {
             m_App = app;
 
-            m_Page = new PropertyManagerPageEx<PropertyPageHandler, TPage>(m_App);
+            m_Page = new PropertyManagerPageEx<PropertyPageHandler, TPage>(m_App, spec);
             m_Page.Handler.DataChanged += OnDataChanged;
             m_Page.Handler.Closed += OnPageClosed;
             m_Page.Handler.Closing += OnClosing;

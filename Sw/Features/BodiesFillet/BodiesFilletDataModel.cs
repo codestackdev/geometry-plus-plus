@@ -12,14 +12,10 @@ using System.Threading.Tasks;
 
 namespace CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet
 {
-    [PageOptions(typeof(Resources), nameof(Resources.fillet),
-        swPropertyManagerPageOptions_e.swPropertyManagerOptions_CancelButton 
-        | swPropertyManagerPageOptions_e.swPropertyManagerOptions_OkayButton)]
     [Message("Select solid bodies, faces, edges to add fillets", "Add Fillet To Bodies")]
-    [DisplayName("Add Fillet To Bodies")]
     public class BodiesFilletPageDataModel
     {
-        [SelectionBox(swSelectType_e.swSelSOLIDBODIES, swSelectType_e.swSelEDGES, swSelectType_e.swSelFACES)]
+        [SelectionBox(swSelectType_e.swSelSOLIDBODIES, swSelectType_e.swSelEDGES, swSelectType_e.swSelFACES, swSelectType_e.swSelVERTICES)]
         [ControlOptions(height: 60)]
         [ControlAttribution(swControlBitmapLabelType_e.swBitmapLabel_SelectFaceEdge)]
         [Description("Selections to add fillet to (solid bodies, faces or edges)")]

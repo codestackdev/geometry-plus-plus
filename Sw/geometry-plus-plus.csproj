@@ -112,9 +112,9 @@
   <ItemGroup>
     <Compile Include="AddIn.cs" />
     <Compile Include="Base\GeometryMacroFeature.cs" />
-    <Compile Include="Core\AboutCommand.cs" />
-    <Compile Include="Core\GeometryFeatureCommand.cs" />
-    <Compile Include="Core\GeometryFeaturesCommandBar.cs" />
+    <Compile Include="Core\AboutCommandSpec.cs" />
+    <Compile Include="Core\GeometryFeatureCommandSpec.cs" />
+    <Compile Include="Core\GeometryFeaturesCommandGroupSpec.cs" />
     <Compile Include="Core\PropertyPage.cs" />
     <Compile Include="Exceptions\UserErrorException.cs" />
     <Compile Include="Features\BodiesFillet\BodiesFilletDataModel.cs" />

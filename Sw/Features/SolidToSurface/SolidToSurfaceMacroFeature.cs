@@ -23,6 +23,10 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.SolidToSurface
     {
         internal const string PROG_ID = "CodeStack.GeometryPlusPlus.SolidToSurfaceMacroFeature";
 
+        public SolidToSurfaceMacroFeature() : base(System.Drawing.Color.Red)
+        {
+        }
+
         protected override IBody2[] CreateGeometry(ISldWorks app, SolidToSurfaceDataModel parameters)
         {
             if (parameters.Bodies != null && parameters.Bodies.Any())

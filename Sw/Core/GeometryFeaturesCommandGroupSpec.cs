@@ -17,9 +17,9 @@ using SolidWorks.Interop.sldworks;
 
 namespace CodeStack.Community.GeometryPlusPlus.Core
 {
-    public class GeometryFeaturesCommandBar : CommandBar
+    public class GeometryFeaturesCommandGroupSpec : CommandGroupSpec
     {
-        public GeometryFeaturesCommandBar(ISldWorks app, IGeometryMacroFeature[] features, IAboutApplicationService abtService)
+        public GeometryFeaturesCommandGroupSpec(ISldWorks app, IGeometryMacroFeature[] features, IAboutApplicationService abtService)
         {
             Title = Resources.CommandBarGeometryTitle;
             Tooltip = Resources.CommandBarGeometryTooltip;
@@ -28,16 +28,16 @@ namespace CodeStack.Community.GeometryPlusPlus.Core
             Commands = GetCommands(features, abtService, app);
         }
 
-        private ICommand[] GetCommands(IGeometryMacroFeature[] features, IAboutApplicationService abtService, ISldWorks app)
+        private ICommandSpec[] GetCommands(IGeometryMacroFeature[] features, IAboutApplicationService abtService, ISldWorks app)
         {
-            var cmds = new List<ICommand>();
+            var cmds = new List<ICommandSpec>();
 
             for (int i = 0; i < features.Length; i++)
             {
-                cmds.Add(new GeometryFeatureCommand(app, features[i], i));
+                cmds.Add(new GeometryFeatureCommandSpec(app, features[i], i));
             }
             
-            cmds.Add(new AboutCommand(abtService, cmds.Count));
+            cmds.Add(new AboutCommandSpec(abtService, cmds.Count));
 
             return cmds.ToArray();
         }

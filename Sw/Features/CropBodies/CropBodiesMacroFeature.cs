@@ -33,41 +33,46 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.CropBodies
     public class CropBodiesMacroFeature : GeometryMacroFeature<CropBodiesDataModel>
     {
         internal const string PROG_ID = "CodeStack.GeometryPlusPlus.CropGeometryMacroFeature";
-
+        
         protected override IBody2[] CreateGeometry(ISldWorks app, CropBodiesDataModel parameters)
+        {
+            return CropGeometry(app.IGetModeler(), app.IGetMathUtility(),
+                parameters.TargetBodies, parameters.TrimTools);
+        }
+
+        private IBody2[] CropGeometry(IModeler modeler, IMathUtility mathUtils,
+            List<IBody2> targetBodies, List<object> trimTools)
         {   
-            if (parameters.TargetBodies == null || !parameters.TargetBodies.Any())
+            if (targetBodies == null || !targetBodies.Any())
             {
                 throw new UserErrorException("Select target bodies to trim");
             }
 
-            if (parameters.TrimTools == null || !parameters.TrimTools.Any())
+            if (trimTools == null || !trimTools.Any())
             {
                 throw new UserErrorException("Select trim tools (sketches or sketch regions)");
             }
 
             var resBodies = new List<IBody2>();
 
-            var modeler = app.IGetModeler();
-            var mathUtils = app.IGetMathUtility();
-
-            var toolBodies = CreateToolBodies(modeler, mathUtils, parameters.TrimTools);
+            var toolBodies = CreateToolBodies(modeler, mathUtils, trimTools);
 
             if (!toolBodies.Any())
             {
                 throw new UserErrorException("No closed regions found in the selected trim tools");
             }
 
-            foreach (var surfBody in parameters.TargetBodies)
+            foreach (var inputBody in targetBodies)
             {
-                if (surfBody == null)
+                if (inputBody == null)
                 {
                     continue; //TODO: investigate why first body is null
                 }
 
                 foreach (var solidBody in toolBodies)
                 {
-                    var targetBody = surfBody.ICopy();
+                    var targetBody = inputBody.ICopy();
+                    
                     var toolBody = solidBody.ICopy();
 
                     int err;
@@ -111,12 +116,12 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.CropBodies
                 {
                     toolBodies.Add(CreateBodyFromSketchRegion(modeler, mathUtils, tool as ISketchRegion));
                 }
-
             }
 
             return toolBodies.ToArray();
         }
 
+        //TODO: calculate height based on bonding box
         private IBody2 CreateBodyFromSketchRegion(IModeler modeler,
             IMathUtility mathUtils, ISketchRegion skReg, double height = 1000)
         {

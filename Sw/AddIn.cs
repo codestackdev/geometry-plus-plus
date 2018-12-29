@@ -35,7 +35,7 @@ namespace CodeStack.Community.GeometryPlusPlus
         {
             m_Services = new ServicesContainer(App);
 
-            var cmdBar = m_Services.GetService<GeometryFeaturesCommandBar>();
+            var cmdBar = m_Services.GetService<GeometryFeaturesCommandGroupSpec>();
 
             this.AddCommandGroup(cmdBar);
 

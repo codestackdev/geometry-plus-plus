@@ -14,12 +14,12 @@ using System.Threading.Tasks;
 
 namespace CodeStack.Community.GeometryPlusPlus.Core
 {
-    internal class GeometryFeatureCommand : Command
+    internal class GeometryFeatureCommandSpec : CommandSpec
     {
         private readonly IGeometryMacroFeature m_Feat;
         private readonly ISldWorks m_App;
 
-        internal GeometryFeatureCommand(ISldWorks app, IGeometryMacroFeature feat, int id)
+        internal GeometryFeatureCommandSpec(ISldWorks app, IGeometryMacroFeature feat, int id)
         {
             if (feat == null)
             {

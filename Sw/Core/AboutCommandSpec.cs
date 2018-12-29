@@ -11,11 +11,11 @@ using Xarial.AppLaunchKit.Base.Services;
 
 namespace CodeStack.Community.GeometryPlusPlus.Core
 {
-    internal class AboutCommand : Command
+    internal class AboutCommandSpec : CommandSpec
     {
         private readonly IAboutApplicationService m_AbtService;
 
-        internal AboutCommand(IAboutApplicationService abtService, int id)
+        internal AboutCommandSpec(IAboutApplicationService abtService, int id)
         {
             m_AbtService = abtService;
 

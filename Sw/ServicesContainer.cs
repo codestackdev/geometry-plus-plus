@@ -47,7 +47,7 @@ namespace CodeStack.Community.GeometryPlusPlus
                 m_Container.RegisterInstance(geomFeat.GetType().Name, geomFeat);
             }
 
-            m_Container.RegisterType<GeometryFeaturesCommandBar>(new ContainerControlledLifetimeManager());
+            m_Container.RegisterType<GeometryFeaturesCommandGroupSpec>(new ContainerControlledLifetimeManager());
 
             m_Container.RegisterInstance(m_Kit.GetService<ILogService>());
             m_Container.RegisterInstance(m_Kit.GetService<IAboutApplicationService>());
