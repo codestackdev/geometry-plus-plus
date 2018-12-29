@@ -13,8 +13,13 @@ using SolidWorks.Interop.swconst;
 
 namespace CodeStack.Community.GeometryPlusPlus.Base
 {
+    public interface IGeometryMacroFeature
+    {
+        void Insert(ISldWorks app, IModelDoc2 model);
+    }
+
     //TODO: macro feature icon and page model - is a redundancy - need to only specify it once
-    public abstract class GeometryMacroFeature<TParams, TPage> : MacroFeatureEx<TParams>
+    public abstract class GeometryMacroFeature<TParams, TPage> : MacroFeatureEx<TParams>, IGeometryMacroFeature
         where TParams : class, new()
     {
         private const int PREVIEW_COLORREF = 65535; //yellow
@@ -24,6 +29,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
         private List<IBody2> m_CurrentEditBodies;
         private List<IBody2> m_CurrentPreviewBodies;
         private PageClosedDelegate<TPage> m_CurrentCloseHandler;
+        private Exception m_LastError;
 
         private PropertyPage<TPage> GetPage(ISldWorks app)
         {
@@ -38,7 +44,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
             return m_Page;
         }
         
-        internal void Insert(ISldWorks app, IModelDoc2 model)
+        public void Insert(ISldWorks app, IModelDoc2 model)
         {
             ShowPropertyPage(app, model, null, null, new TParams(), OnFeatureInsertCompleted);
         }
@@ -55,8 +61,10 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
             }
         }
 
-        private void PreviewGeometry(ISldWorks app, IModelDoc2 model, TParams parameters)
+        private void PregenerateAndPreviewGeometry(ISldWorks app, IModelDoc2 model, TParams parameters)
         {
+            m_LastError = null;
+
             string[] paramNames;
             int[] paramTypes;
             string[] paramValues;
@@ -69,6 +77,45 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
                 out paramNames, out paramTypes, out paramValues, out selection,
                 out dimTypes, out dimValues, out editBodies);
 
+            IBody2[] geom = null;
+
+            try
+            {
+                geom = CreatePreview(app, parameters, ref editBodies);
+            }
+            catch (Exception ex)
+            {
+                editBodies = null;
+                m_LastError = ex;
+            }
+            finally
+            {
+                ResetPreview(model, editBodies);
+
+                PreviewNewGeometry(model, geom);
+
+                model.GraphicsRedraw2();
+            }
+        }
+
+        private void PreviewNewGeometry(IModelDoc2 model, IBody2[] geom)
+        {
+            if (geom != null)
+            {
+                foreach (var body in geom)
+                {
+                    body.Display3(model, PREVIEW_COLORREF,
+                        (int)swTempBodySelectOptions_e.swTempBodySelectOptionNone);
+
+                    body.MaterialPropertyValues2 = new double[] { 1, 1, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 };
+                }
+
+                m_CurrentPreviewBodies.AddRange(geom);
+            }
+        }
+
+        private void ResetPreview(IModelDoc2 model, IBody2[] editBodies)
+        {
             if (editBodies == null)
             {
                 editBodies = new IBody2[0];
@@ -76,64 +123,52 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
 
             HidePreview(model, m_CurrentEditBodies.Except(editBodies).ToArray());
 
-            if (editBodies != null)
+            var newEditBodies = editBodies.Except(m_CurrentEditBodies).ToArray();
+
+            m_CurrentEditBodies.AddRange(newEditBodies);
+
+            foreach (var editBody in newEditBodies)
             {
-                var newEditBodies = editBodies.Except(m_CurrentEditBodies).ToArray();
-
-                m_CurrentEditBodies.AddRange(newEditBodies);
-
-                foreach (var editBody in newEditBodies)
-                {
-                    editBody.DisableDisplay = true;
-                    editBody.DisableHighlight = true;
-                }
-            }
-
-            try
-            {
-                var geom = CreateGeometry(app, parameters);
-
-                if (geom != null)
-                {
-                    foreach (var body in geom)
-                    {
-                        body.Display3(model, PREVIEW_COLORREF,
-                            (int)swTempBodySelectOptions_e.swTempBodySelectOptionNone);
-
-                        body.MaterialPropertyValues2 = new double[] { 1, 1, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 };
-                    }
-
-                    m_CurrentPreviewBodies.AddRange(geom);
-                }
-
-                model.GraphicsRedraw2();
-            }
-            catch
-            {
+                editBody.DisableDisplay = true;
+                editBody.DisableHighlight = true;
             }
         }
 
         private void HidePreview(IModelDoc2 model, IBody2[] editBodiesToShow)
         {
-            if (editBodiesToShow != null)
+            try
             {
-                foreach (var editBody in editBodiesToShow)
+                if (editBodiesToShow != null)
                 {
-                    editBody.DisableDisplay = false;
-                    editBody.DisableHighlight = false;
-                    m_CurrentEditBodies.Remove(editBody);
+                    foreach (var editBody in editBodiesToShow)
+                    {
+                        if (editBody != null)
+                        {
+                            editBody.DisableDisplay = false;
+                            editBody.DisableHighlight = false;
+                        }
+
+                        m_CurrentEditBodies.Remove(editBody);
+                    }
+                }
+
+                if (m_CurrentPreviewBodies != null)
+                {
+                    for (int i = 0; i < m_CurrentPreviewBodies.Count; i++)
+                    {
+                        if (m_CurrentPreviewBodies[i] != null)
+                        {
+                            m_CurrentPreviewBodies[i].Hide(model);
+                            m_CurrentPreviewBodies[i] = null;
+                        }
+                    }
+
+                    m_CurrentPreviewBodies.Clear();
                 }
             }
-
-            if (m_CurrentPreviewBodies != null)
+            catch(Exception ex)
             {
-                for (int i = 0; i < m_CurrentPreviewBodies.Count; i++)
-                {
-                    m_CurrentPreviewBodies[i].Hide(model);
-                    m_CurrentPreviewBodies[i] = null;
-                }
-
-                m_CurrentPreviewBodies.Clear();
+                Logger.Log(ex);
             }
 
             GC.Collect();
@@ -157,40 +192,41 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
         {
             m_CurrentEditBodies = new List<IBody2>();
             m_CurrentPreviewBodies = new List<IBody2>();
+            m_LastError = null;
+
             m_CurrentCloseHandler = closeHandler;
 
             var data = ConvertParamsToPage(parameters);
             
             GetPage(app).Show(model, feat, featData, data);
 
-            PreviewGeometry(app, model, parameters);
+            PregenerateAndPreviewGeometry(app, model, parameters);
         }
 
         private void OnPageApplying(ISldWorks app, IModelDoc2 model, TPage data, SwEx.PMPage.Base.ClosingArg arg)
         {
-            try
+            if (m_LastError != null)
             {
-                var parameters = ConvertPageToParams(data);
-                var geom = CreateGeometry(app, parameters);
-            }
-            catch(UserErrorException ex)
-            {
+                Logger.Log(m_LastError);
+
                 arg.Cancel = true;
-                arg.ErrorMessage = ex.Message;
                 arg.ErrorTitle = Resources.MacroFeatureErrorInvalidParameters;
-            }
-            catch
-            {
-                arg.Cancel = true;
-                arg.ErrorMessage = "Unknown error";
-                arg.ErrorTitle = Resources.MacroFeatureErrorInvalidParameters;
+
+                if (m_LastError is UserErrorException)
+                {
+                    arg.ErrorMessage = m_LastError.Message;
+                }
+                else
+                {
+                    arg.ErrorMessage = "Unknown error";
+                }
             }
         }
 
         private void OnDataChanged(ISldWorks app, IModelDoc2 model, TPage data)
         {
             var parameters = ConvertPageToParams(data);
-            PreviewGeometry(app, model, parameters);
+            PregenerateAndPreviewGeometry(app, model, parameters);
         }
 
         private void OnPageClosed(IModelDoc2 model, IFeature feat, IMacroFeatureData featData, TPage data, bool isOk)
@@ -219,11 +255,36 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
 
         protected override MacroFeatureRebuildResult OnRebuild(ISldWorks app, IModelDoc2 model, IFeature feature, TParams parameters)
         {
-            var bodies = CreateGeometry(app, parameters);
+            try
+            {
+                var bodies = CreateGeometry(app, parameters);
 
-            var featData = feature.GetDefinition() as IMacroFeatureData;
+                var featData = feature.GetDefinition() as IMacroFeatureData;
 
-            return MacroFeatureRebuildResult.FromBodies(bodies, featData, true);
+                if (bodies.Any())
+                {
+                    return MacroFeatureRebuildResult.FromBodies(bodies, featData, true);
+                }
+                else
+                {
+                    return MacroFeatureRebuildResult.FromStatus(true);
+                }
+            }
+            catch (UserErrorException ex)
+            {
+                Logger.Log(ex);
+                return MacroFeatureRebuildResult.FromStatus(false, ex.Message);
+            }
+            catch(Exception ex)
+            {
+                Logger.Log(ex);
+                return MacroFeatureRebuildResult.FromStatus(false, "Rebuild error");
+            }
+        }
+
+        protected virtual IBody2[] CreatePreview(ISldWorks app, TParams parameters, ref IBody2[] editBodies)
+        {
+            return CreateGeometry(app, parameters);
         }
 
         protected abstract IBody2[] CreateGeometry(ISldWorks app, TParams parameters);

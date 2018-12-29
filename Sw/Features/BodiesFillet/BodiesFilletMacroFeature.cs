@@ -9,14 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using SolidWorks.Interop.sldworks;
 using CodeStack.Community.GeometryPlusPlus.Exceptions;
+using System.ComponentModel;
 
 namespace CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet
 {
-    [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.fillet))]
     [Options("BodiesFillet")]
-    [ComVisible(true)]
-    [ProgId(PROG_ID)]
-    [Guid("A0856B88-393B-40BE-B523-B86D918CC91B")]
+    [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.fillet))]
+    [SwEx.Common.Attributes.Title("Bodies Fillet")]
+    [Description("Adds fillet to bodies in multi-body parts")]
+    [ComVisible(true), ProgId(PROG_ID), Guid("A0856B88-393B-40BE-B523-B86D918CC91B")]
     public class BodiesFilletMacroFeature : GeometryMacroFeature<BodiesFilletFeatureDataModel, BodiesFilletPageDataModel>
     {
         internal const string PROG_ID = "CodeStack.GeometryPlusPlus.BodiesFilletMacroFeature";

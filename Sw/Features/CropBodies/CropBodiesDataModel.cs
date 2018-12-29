@@ -10,15 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeStack.Community.GeometryPlusPlus.Features.TrimSurfacesByRegion
+namespace CodeStack.Community.GeometryPlusPlus.Features.CropBodies
 {
     [PageOptions(typeof(Resources), nameof(Resources.trim_surface_region),
         swPropertyManagerPageOptions_e.swPropertyManagerOptions_CancelButton | swPropertyManagerPageOptions_e.swPropertyManagerOptions_OkayButton)]
-    [Message("Trims selected surface bodies with selected region", "rim Surfaces By Region")]
+    [Message("Trims selected surface bodies with selected region", "Trim Surfaces By Region")]
     [DisplayName("Trim Surfaces By Region")]
-    public class TrimSurfacesByRegionDataModel
+    public class CropBodiesDataModel
     {
-        [SelectionBox(1, swSelectType_e.swSelSURFACEBODIES)]
+        [SelectionBox(1, swSelectType_e.swSelSURFACEBODIES, swSelectType_e.swSelSOLIDBODIES)]
         [ParameterEditBody]
         [ControlOptions(height: 60)]
         [ControlAttribution(swControlBitmapLabelType_e.swBitmapLabel_SelectFaceSurface)]

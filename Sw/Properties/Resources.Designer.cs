@@ -80,6 +80,42 @@ namespace CodeStack.Community.GeometryPlusPlus.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About....
+        /// </summary>
+        internal static string CommandAboutTitle {
+            get {
+                return ResourceManager.GetString("CommandAboutTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About Geometry++.
+        /// </summary>
+        internal static string CommandAboutTooltip {
+            get {
+                return ResourceManager.GetString("CommandAboutTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geometry++.
+        /// </summary>
+        internal static string CommandBarGeometryTitle {
+            get {
+                return ResourceManager.GetString("CommandBarGeometryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Additional commands for manipulating geometry.
+        /// </summary>
+        internal static string CommandBarGeometryTooltip {
+            get {
+                return ResourceManager.GetString("CommandBarGeometryTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {\rtf1\ansi\deff3\adeflang1025
         ///{\fonttbl{\f0\froman\fprq2\fcharset0 Times New Roman;}{\f1\froman\fprq2\fcharset2 Symbol;}{\f2\fswiss\fprq2\fcharset0 Arial;}{\f3\froman\fprq2\fcharset0 Liberation Serif{\*\falt Times New Roman};}{\f4\froman\fprq2\fcharset0 Liberation Sans{\*\falt Arial};}{\f5\froman\fprq2\fcharset0 Calibri;}{\f6\froman\fprq2\fcharset0 Liberation Mono{\*\falt Courier New};}{\f7\fnil\fprq2\fcharset0 Times New Roman;}{\f8\fswiss\fprq0\fcharset128 Arial;}{\f9\fnil\fprq2\fcharset0 Liberation Serif [rest of string was truncated]&quot;;.
         /// </summary>
@@ -130,7 +166,9 @@ namespace CodeStack.Community.GeometryPlusPlus.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Icons by:
+        ///
+        ///About: http://www.iconarchive.com/icons/oxygen-icons.org/oxygen/authors.txt.
         /// </summary>
         internal static string Licenses {
             get {

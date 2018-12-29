@@ -163,4 +163,16 @@
   <data name="UpdateUrl" xml:space="preserve">
     <value>https://www.codestack.net/labs/solidworks/geometry-plus-plus/version-info.json</value>
   </data>
+  <data name="CommandBarGeometryTitle" xml:space="preserve">
+    <value>Geometry++</value>
+  </data>
+  <data name="CommandBarGeometryTooltip" xml:space="preserve">
+    <value>Additional commands for manipulating geometry</value>
+  </data>
+  <data name="CommandAboutTitle" xml:space="preserve">
+    <value>About...</value>
+  </data>
+  <data name="CommandAboutTooltip" xml:space="preserve">
+    <value>About Geometry++</value>
+  </data>
 </root>

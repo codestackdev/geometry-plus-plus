@@ -10,20 +10,31 @@ using System.Threading.Tasks;
 using SolidWorks.Interop.sldworks;
 using CodeStack.Community.GeometryPlusPlus.Exceptions;
 using SolidWorks.Interop.swconst;
+using System.ComponentModel;
+using CodeStack.SwEx.MacroFeature.Core;
+using System.Diagnostics;
 
 namespace CodeStack.Community.GeometryPlusPlus.Features.TrimSurfacesByRegion
 {
-
-    [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.trim_surface_region))]
-    [Options("TrimSurface")]
-    [ComVisible(true)]
-    [ProgId(PROG_ID)]
-    [Guid("16ABB9D1-887E-4FD1-BE67-847977261E73")]
-    public class TrimSurfacesByRegionMacroFeature : GeometryMacroFeature<TrimSurfacesByRegionDataModel>
+    [ComVisible(true), ProgId(PROG_ID), Guid("16ABB9D1-887E-4FD1-BE67-847977261E73")]
+    public class TrimSurfacesByRegionMacroFeature : ObsoleteMacroFeatureEx<CropBodies.CropBodiesMacroFeature>
     {
         internal const string PROG_ID = "CodeStack.GeometryPlusPlus.TrimSurfacesByRegionMacroFeature";
+    }
+}
 
-        protected override IBody2[] CreateGeometry(ISldWorks app, TrimSurfacesByRegionDataModel parameters)
+namespace CodeStack.Community.GeometryPlusPlus.Features.CropBodies
+{
+    [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.trim_surface_region))]
+    [SwEx.Common.Attributes.Title("Crop Bodies")]
+    [Description("Crops bodies with the selected profile")]
+    [Options("CropBody")]
+    [ComVisible(true), ProgId(PROG_ID), Guid("EEFD9EC5-77B1-4709-9550-C07FEEA4643A")]
+    public class CropBodiesMacroFeature : GeometryMacroFeature<CropBodiesDataModel>
+    {
+        internal const string PROG_ID = "CodeStack.GeometryPlusPlus.CropGeometryMacroFeature";
+
+        protected override IBody2[] CreateGeometry(ISldWorks app, CropBodiesDataModel parameters)
         {   
             if (parameters.TargetBodies == null || !parameters.TargetBodies.Any())
             {

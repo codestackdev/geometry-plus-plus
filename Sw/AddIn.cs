@@ -1,7 +1,7 @@
-﻿using CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet;
+﻿using CodeStack.Community.GeometryPlusPlus.Core;
+using CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet;
 using CodeStack.Community.GeometryPlusPlus.Features.ExtrudeSurfaceCap;
 using CodeStack.Community.GeometryPlusPlus.Features.SolidToSurface;
-using CodeStack.Community.GeometryPlusPlus.Features.TrimSurfacesByRegion;
 using CodeStack.Community.GeometryPlusPlus.Properties;
 using CodeStack.SwEx.AddIn;
 using CodeStack.SwEx.AddIn.Attributes;
@@ -29,122 +29,17 @@ namespace CodeStack.Community.GeometryPlusPlus
 #endif
     public class AddIn : SwAddInEx
     {
-        //TODO: redundancy - make commands to load from the available macro features
-
-        [SwEx.Common.Attributes.Title("Geometry++")]
-        [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.geometry_plus_plus))]
-        private enum Commands_e
-        {
-            [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.solid_to_surface))]
-            [SwEx.Common.Attributes.Title("Convert Solid To Surface")]
-            [CommandItemInfo(true, true, swWorkspaceTypes_e.Part, true)]
-            SolidToSurface,
-
-            [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.trim_surface_region))]
-            [SwEx.Common.Attributes.Title("Trim Surface By Region")]
-            [CommandItemInfo(true, true, swWorkspaceTypes_e.Part, true)]
-            TrimSurfaceByRegion,
-
-            [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.extrude_surface_caps))]
-            [SwEx.Common.Attributes.Title("Extrude Surface Cap")]
-            [CommandItemInfo(true, true, swWorkspaceTypes_e.Part, true)]
-            ExtrudeSurfaceCap,
-
-            [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.fillet))]
-            [SwEx.Common.Attributes.Title("Bodies Fillet")]
-            [CommandItemInfo(true, true, swWorkspaceTypes_e.Part, true)]
-            BodiesFillet,
-
-            [SwEx.Common.Attributes.Title("About...")]
-            [Description("About Geometry++")]
-            [CommandItemInfo(true, false, swWorkspaceTypes_e.All)]
-            [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.about_icon))]
-            About
-        }
-
-        private ServicesManager m_Kit;
+        private ServicesContainer m_Services;
 
         public override bool OnConnect()
-        {   
-            m_Kit = new ServicesManager(this.GetType().Assembly, new IntPtr(App.IFrameObject().GetHWnd()),
-                typeof(UpdatesService),
-                typeof(SystemEventLogService),
-                typeof(AboutApplicationService));
+        {
+            m_Services = new ServicesContainer(App);
 
-            m_Kit.HandleError += OnHandleError;
+            var cmdBar = m_Services.GetService<GeometryFeaturesCommandBar>();
 
-            var syncContext = SynchronizationContext.Current;
-
-            if (syncContext == null)
-            {
-                syncContext = new System.Windows.Forms.WindowsFormsSynchronizationContext();
-            }
-
-            Task.Run(() =>
-            {
-                SynchronizationContext.SetSynchronizationContext(
-                        syncContext);
-                m_Kit.StartServicesAsync().Wait();
-            });
-
-            this.AddCommandGroup<Commands_e>(OnButtonClicked);
+            this.AddCommandGroup(cmdBar);
 
             return true;
-        }
-
-        private bool OnHandleError(Exception ex)
-        {
-            try
-            {
-                m_Kit.GetService<ILogService>().LogException(ex);
-            }
-            catch
-            {
-            }
-
-            return true;
-        }
-
-        private void OnButtonClicked(Commands_e btn)
-        {
-            switch (btn)
-            {
-                //TODO: use dependency injection with singleton
-
-                case Commands_e.SolidToSurface:
-                    {
-                        new SolidToSurfaceMacroFeature().Insert(App, App.IActiveDoc2);
-                        break;
-                    }
-
-                case Commands_e.TrimSurfaceByRegion:
-                    {
-                        new TrimSurfacesByRegionMacroFeature().Insert(App, App.IActiveDoc2);
-                        break;
-                    }
-
-                case Commands_e.ExtrudeSurfaceCap:
-                    {
-                        App.SendMsgToUser("Not implemented");
-                        new ExtrudeSurfaceCapMacroFeature().Insert(App, App.IActiveDoc2);
-                        break;
-                    }
-
-                case Commands_e.BodiesFillet:
-                    {
-                        App.SendMsgToUser("Not implemented");
-                        new BodiesFilletMacroFeature().Insert(App, App.IActiveDoc2);
-                        break;
-                    }
-
-                case Commands_e.About:
-                    m_Kit.GetService<IAboutApplicationService>().ShowAboutForm();
-                    break;
-
-                default:
-                    App.SendMsgToUser("Not implemented");
-                    break;
-            }
         }
     }
 }
