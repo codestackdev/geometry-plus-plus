@@ -22,7 +22,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.CropBodies
         [Description("Surface bodies to trim")]
         public List<IBody2> TargetBodies { get; set; }
 
-        [SelectionBox(2, swSelectType_e.swSelSKETCHES, swSelectType_e.swSelSKETCHREGION)]
+        [SelectionBox(2, swSelectType_e.swSelSKETCHES)]
         [ControlAttribution(swControlBitmapLabelType_e.swBitmapLabel_SelectBoundary)]
         [ControlOptions(height: 60)]
         [ParameterSelection]

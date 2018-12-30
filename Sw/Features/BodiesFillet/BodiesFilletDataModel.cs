@@ -23,9 +23,9 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet
 
         [ControlAttribution(swControlBitmapLabelType_e.swBitmapLabel_Radius)]
         [NumberBoxOptions(swNumberboxUnitType_e.swNumberBox_Length, 0, 1000, 0.001,
-                true, 0.01, 0.0005, swPropMgrPageNumberBoxStyle_e.swPropMgrPageNumberBoxStyle_Thumbwheel)]
+                false, 0.01, 0.0005, swPropMgrPageNumberBoxStyle_e.swPropMgrPageNumberBoxStyle_Thumbwheel)]
         [Description("Fillet radius")]
-        public double Radius { get; set; }
+        public double Radius { get; set; } = 0.01;
     }
 
     public class BodiesFilletFeatureDataModel
@@ -37,6 +37,6 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet
         public List<IBody2> EditBodies { get; set; }
 
         [ParameterDimension(swDimensionType_e.swRadialDimension)]
-        public double Radius { get; set; }
+        public double Radius { get; set; } = 0.01;
     }
 }

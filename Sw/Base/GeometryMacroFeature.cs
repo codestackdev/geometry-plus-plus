@@ -15,6 +15,8 @@ using System.Drawing;
 using CodeStack.SwEx.Common.Reflection;
 using System.ComponentModel;
 using CodeStack.SwEx.PMPage.Data;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace CodeStack.Community.GeometryPlusPlus.Base
 {
@@ -162,6 +164,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
                         if (m_CurrentPreviewBodies[i] != null)
                         {
                             m_CurrentPreviewBodies[i].Hide(model);
+                            Marshal.ReleaseComObject(m_CurrentPreviewBodies[i]);
                             m_CurrentPreviewBodies[i] = null;
                         }
                     }
@@ -175,6 +178,8 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
             }
 
             GC.Collect();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
             model.GraphicsRedraw2();
         }
 
@@ -202,13 +207,23 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
 
         private void OnFeatureInsertCompleted(IModelDoc2 model, IFeature feat, IMacroFeatureData featData, TPage data, bool isOk)
         {
+            Logger.Log("Inserting new feature");
+
             HidePreview(model, m_CurrentEditBodies.ToArray());
 
             if (isOk)
             {
-                var parameters = ConvertPageToParams(data);
+                try
+                {
+                    var parameters = ConvertPageToParams(data);
 
-                var newFeat = model.FeatureManager.InsertComFeature(GetType(), parameters);
+                    var newFeat = model.FeatureManager.InsertComFeature(GetType(), parameters);
+                }
+                catch(Exception ex)
+                {
+                    Logger.Log(ex);
+                    throw;
+                }
             }
         }
 
@@ -312,10 +327,14 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
 
             foreach (var editBody in newEditBodies)
             {
-                editBody.DisableDisplay = true;
-                editBody.DisableHighlight = true;
+                if (editBody != null)
+                {
+                    editBody.DisableDisplay = true;
+                    editBody.DisableHighlight = true;
+                }
             }
         }
+
         private void ShowPropertyPage(ISldWorks app, IModelDoc2 model, IFeature feat,
             IMacroFeatureData featData, TParams parameters, PageClosedDelegate<TPage> closeHandler)
         {

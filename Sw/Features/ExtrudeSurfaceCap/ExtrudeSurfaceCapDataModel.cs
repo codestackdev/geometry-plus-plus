@@ -14,18 +14,18 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.ExtrudeSurfaceCap
     [Message("Select surface to extrude with caps", "Extrude Surface With Caps")]
     public class ExtrudeSurfaceCapDataModel
     {
-        [SelectionBox(swSelectType_e.swSelSKETCHES, swSelectType_e.swSelSKETCHREGION)]
+        [SelectionBox(swSelectType_e.swSelSKETCHES)]
         [ControlAttribution(swControlBitmapLabelType_e.swBitmapLabel_SelectProfile)]
         [Description("Extrusion profile")]
         [ParameterSelection]
-        public object Profile { get; set; }
+        public List<object> Profiles { get; set; }
 
         [ControlAttribution(swControlBitmapLabelType_e.swBitmapLabel_Depth)]
-        [NumberBoxOptions(swNumberboxUnitType_e.swNumberBox_Length, 0, 1000, 0.001,
-                true, 0.01, 0.0005, swPropMgrPageNumberBoxStyle_e.swPropMgrPageNumberBoxStyle_Thumbwheel)]
+        [NumberBoxOptions(swNumberboxUnitType_e.swNumberBox_Length, 0, 1000, 0.01,
+                false, 0.1, 0.005, swPropMgrPageNumberBoxStyle_e.swPropMgrPageNumberBoxStyle_Thumbwheel)]
         [Description("Height of the extrusion")]
         [ParameterDimension(swDimensionType_e.swLinearDimension)]
-        public double Height { get; set; }
+        public double Height { get; set; } = 0.01;
 
         [DisplayName("Mid plane")]
         [Description("Extrude mid plane")]

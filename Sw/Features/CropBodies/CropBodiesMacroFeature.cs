@@ -101,31 +101,31 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.CropBodies
                 {
                     var sketch = (tool as IFeature).GetSpecificFeature2() as ISketch;
 
-                    var sketchRegions = sketch.GetSketchRegions() as object[];
+                    var sketchContours = sketch.GetSketchContours() as object[];
 
-                    if (sketchRegions != null)
+                    if (sketchContours != null)
                     {
-                        foreach (ISketchRegion skReg in sketchRegions)
+                        foreach (ISketchContour skCont in sketchContours)
                         {
-                            toolBodies.Add(CreateBodyFromSketchRegion(modeler, mathUtils, skReg));
+                            toolBodies.Add(CreateBodyFromSketchContour(modeler, mathUtils, skCont));
                         }
                     }
                 }
 
-                if (tool is ISketchRegion)
+                if (tool is ISketchContour)
                 {
-                    toolBodies.Add(CreateBodyFromSketchRegion(modeler, mathUtils, tool as ISketchRegion));
+                    toolBodies.Add(CreateBodyFromSketchContour(modeler, mathUtils, tool as ISketchContour));
                 }
             }
 
             return toolBodies.ToArray();
         }
 
-        //TODO: calculate height based on bonding box
-        private IBody2 CreateBodyFromSketchRegion(IModeler modeler,
-            IMathUtility mathUtils, ISketchRegion skReg, double height = 1000)
+        //TODO: calculate height based on bounding box
+        private IBody2 CreateBodyFromSketchContour(IModeler modeler,
+            IMathUtility mathUtils, ISketchContour skCont, double height = 1000)
         {
-            var sketch = skReg.Sketch;
+            var sketch = skCont.Sketch;
 
             if (sketch.Is3D())
             {
@@ -134,7 +134,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.CropBodies
 
             var transform = sketch.ModelToSketchTransform.IInverse();
 
-            var boundary = (skReg.GetEdges() as object[])
+            var boundary = (skCont.GetEdges() as object[])
                 .Cast<IEdge>()
                 .Select(e =>
                 {
