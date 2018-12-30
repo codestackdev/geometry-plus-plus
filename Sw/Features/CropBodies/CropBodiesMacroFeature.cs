@@ -10,53 +10,69 @@ using System.Threading.Tasks;
 using SolidWorks.Interop.sldworks;
 using CodeStack.Community.GeometryPlusPlus.Exceptions;
 using SolidWorks.Interop.swconst;
+using System.ComponentModel;
+using CodeStack.SwEx.MacroFeature.Core;
+using System.Diagnostics;
 
 namespace CodeStack.Community.GeometryPlusPlus.Features.TrimSurfacesByRegion
 {
-
-    [Icon(typeof(Resources), nameof(Resources.trim_surface_region))]
-    [Options("TrimSurface")]
-    [ComVisible(true)]
-    [ProgId(PROG_ID)]
-    [Guid("16ABB9D1-887E-4FD1-BE67-847977261E73")]
-    public class TrimSurfacesByRegionMacroFeature : GeometryMacroFeature<TrimSurfacesByRegionDataModel>
+    [ComVisible(true), ProgId(PROG_ID), Guid("16ABB9D1-887E-4FD1-BE67-847977261E73")]
+    public class TrimSurfacesByRegionMacroFeature : ObsoleteMacroFeatureEx<CropBodies.CropBodiesMacroFeature>
     {
         internal const string PROG_ID = "CodeStack.GeometryPlusPlus.TrimSurfacesByRegionMacroFeature";
+    }
+}
 
-        protected override IBody2[] CreateGeometry(ISldWorks app, TrimSurfacesByRegionDataModel parameters)
+namespace CodeStack.Community.GeometryPlusPlus.Features.CropBodies
+{
+    [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.trim_surface_region))]
+    [SwEx.Common.Attributes.Title("Crop Bodies")]
+    [Description("Crops bodies with the selected profile")]
+    [Options("CropBody")]
+    [ComVisible(true), ProgId(PROG_ID), Guid("EEFD9EC5-77B1-4709-9550-C07FEEA4643A")]
+    public class CropBodiesMacroFeature : GeometryMacroFeature<CropBodiesDataModel>
+    {
+        internal const string PROG_ID = "CodeStack.GeometryPlusPlus.CropGeometryMacroFeature";
+        
+        protected override IBody2[] CreateGeometry(ISldWorks app, CropBodiesDataModel parameters)
+        {
+            return CropGeometry(app.IGetModeler(), app.IGetMathUtility(),
+                parameters.TargetBodies, parameters.TrimTools);
+        }
+
+        private IBody2[] CropGeometry(IModeler modeler, IMathUtility mathUtils,
+            List<IBody2> targetBodies, List<object> trimTools)
         {   
-            if (parameters.TargetBodies == null || !parameters.TargetBodies.Any())
+            if (targetBodies == null || !targetBodies.Any())
             {
                 throw new UserErrorException("Select target bodies to trim");
             }
 
-            if (parameters.TrimTools == null || !parameters.TrimTools.Any())
+            if (trimTools == null || !trimTools.Any())
             {
                 throw new UserErrorException("Select trim tools (sketches or sketch regions)");
             }
 
             var resBodies = new List<IBody2>();
 
-            var modeler = app.IGetModeler();
-            var mathUtils = app.IGetMathUtility();
-
-            var toolBodies = CreateToolBodies(modeler, mathUtils, parameters.TrimTools);
+            var toolBodies = CreateToolBodies(modeler, mathUtils, trimTools);
 
             if (!toolBodies.Any())
             {
                 throw new UserErrorException("No closed regions found in the selected trim tools");
             }
 
-            foreach (var surfBody in parameters.TargetBodies)
+            foreach (var inputBody in targetBodies)
             {
-                if (surfBody == null)
+                if (inputBody == null)
                 {
                     continue; //TODO: investigate why first body is null
                 }
 
                 foreach (var solidBody in toolBodies)
                 {
-                    var targetBody = surfBody.ICopy();
+                    var targetBody = inputBody.ICopy();
+                    
                     var toolBody = solidBody.ICopy();
 
                     int err;
@@ -85,31 +101,31 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.TrimSurfacesByRegion
                 {
                     var sketch = (tool as IFeature).GetSpecificFeature2() as ISketch;
 
-                    var sketchRegions = sketch.GetSketchRegions() as object[];
+                    var sketchContours = sketch.GetSketchContours() as object[];
 
-                    if (sketchRegions != null)
+                    if (sketchContours != null)
                     {
-                        foreach (ISketchRegion skReg in sketchRegions)
+                        foreach (ISketchContour skCont in sketchContours)
                         {
-                            toolBodies.Add(CreateBodyFromSketchRegion(modeler, mathUtils, skReg));
+                            toolBodies.Add(CreateBodyFromSketchContour(modeler, mathUtils, skCont));
                         }
                     }
                 }
 
-                if (tool is ISketchRegion)
+                if (tool is ISketchContour)
                 {
-                    toolBodies.Add(CreateBodyFromSketchRegion(modeler, mathUtils, tool as ISketchRegion));
+                    toolBodies.Add(CreateBodyFromSketchContour(modeler, mathUtils, tool as ISketchContour));
                 }
-
             }
 
             return toolBodies.ToArray();
         }
 
-        private IBody2 CreateBodyFromSketchRegion(IModeler modeler,
-            IMathUtility mathUtils, ISketchRegion skReg, double height = 1000)
+        //TODO: calculate height based on bounding box
+        private IBody2 CreateBodyFromSketchContour(IModeler modeler,
+            IMathUtility mathUtils, ISketchContour skCont, double height = 1000)
         {
-            var sketch = skReg.Sketch;
+            var sketch = skCont.Sketch;
 
             if (sketch.Is3D())
             {
@@ -118,7 +134,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.TrimSurfacesByRegion
 
             var transform = sketch.ModelToSketchTransform.IInverse();
 
-            var boundary = (skReg.GetEdges() as object[])
+            var boundary = (skCont.GetEdges() as object[])
                 .Cast<IEdge>()
                 .Select(e =>
                 {
