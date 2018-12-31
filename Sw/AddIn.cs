@@ -6,6 +6,7 @@ using CodeStack.Community.GeometryPlusPlus.Properties;
 using CodeStack.SwEx.AddIn;
 using CodeStack.SwEx.AddIn.Attributes;
 using CodeStack.SwEx.AddIn.Enums;
+using CodeStack.SwEx.Common.Attributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,8 +28,11 @@ namespace CodeStack.Community.GeometryPlusPlus
 #if DEBUG
     [AutoRegister("Geometry++", "Additional geometry functionality for SOLIDWORKS")]
 #endif
+    [LoggerOptions(true, LOGGER_NAME)]
     public class AddIn : SwAddInEx
     {
+        internal const string LOGGER_NAME = "Geometry++";
+
         private ServicesContainer m_Services;
 
         public override bool OnConnect()

@@ -18,6 +18,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.SolidToSurface
     [SwEx.Common.Attributes.Title("Convert Solid To Surface")]
     [Description("Converts solid bodies to surface bodies")]
     [Options("SolidToSurface")]
+    [SwEx.Common.Attributes.LoggerOptions(true, AddIn.LOGGER_NAME + ".SolidToSurfaceMacroFeature")]
     [ComVisible(true), ProgId(PROG_ID), Guid("753D2372-D1AF-4E22-94F2-6E6416394C9C")]
     public class SolidToSurfaceMacroFeature : GeometryMacroFeature<SolidToSurfaceDataModel>
     {

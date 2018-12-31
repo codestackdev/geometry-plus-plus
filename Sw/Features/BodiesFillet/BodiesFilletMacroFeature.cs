@@ -20,6 +20,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet
     [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.fillet))]
     [SwEx.Common.Attributes.Title("Bodies Fillet")]
     [Description("Adds fillet to bodies in multi-body parts")]
+    [SwEx.Common.Attributes.LoggerOptions(true, AddIn.LOGGER_NAME + ".BodiesFilletMacroFeature")]
     [ComVisible(true), ProgId(PROG_ID), Guid("A0856B88-393B-40BE-B523-B86D918CC91B")]
     public class BodiesFilletMacroFeature : GeometryMacroFeature<BodiesFilletFeatureDataModel, BodiesFilletPageDataModel>
     {

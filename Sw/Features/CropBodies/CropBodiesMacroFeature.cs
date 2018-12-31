@@ -25,10 +25,11 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.TrimSurfacesByRegion
 
 namespace CodeStack.Community.GeometryPlusPlus.Features.CropBodies
 {
-    [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.trim_surface_region))]
+    [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.crop_bodies))]
     [SwEx.Common.Attributes.Title("Crop Bodies")]
     [Description("Crops bodies with the selected profile")]
     [Options("CropBody")]
+    [SwEx.Common.Attributes.LoggerOptions(true, AddIn.LOGGER_NAME + ".CropBodiesMacroFeature")]
     [ComVisible(true), ProgId(PROG_ID), Guid("EEFD9EC5-77B1-4709-9550-C07FEEA4643A")]
     public class CropBodiesMacroFeature : GeometryMacroFeature<CropBodiesDataModel>
     {

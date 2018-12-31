@@ -19,6 +19,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.ExtrudeSurfaceCap
     [SwEx.Common.Attributes.Title("Extrude Surface Cap")]
     [Description("Creates extruded surface with caps")]
     [Options("ExtrudeSurfaceCap")]
+    [SwEx.Common.Attributes.LoggerOptions(true, AddIn.LOGGER_NAME + ".ExtrudeSurfaceCapMacroFeature")]
     [ComVisible(true), ProgId(PROG_ID), Guid("39FD6EA8-3113-40BA-A1D6-405CFF3931BF")]
     public class ExtrudeSurfaceCapMacroFeature : GeometryMacroFeature<ExtrudeSurfaceCapDataModel>
     {
