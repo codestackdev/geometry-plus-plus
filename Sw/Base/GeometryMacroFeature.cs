@@ -28,6 +28,8 @@ namespace CodeStack.Community.GeometryPlusPlus.Base
     public abstract class GeometryMacroFeature<TParams, TPage> : MacroFeatureEx<TParams>, IGeometryMacroFeature
         where TParams : class, new()
     {
+        internal const string PROVIDER_MSG = " codestack.net.Download the add-in at https://www.codestack.net/labs/solidworks/geometry-plus-plus/installation/";
+
         private readonly Color m_PreviewColor;
 
         private PageClosedDelegate<TPage> m_CurrentCloseHandler;

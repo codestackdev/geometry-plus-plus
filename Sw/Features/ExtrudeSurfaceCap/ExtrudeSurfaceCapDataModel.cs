@@ -12,11 +12,13 @@ using System.Threading.Tasks;
 namespace CodeStack.Community.GeometryPlusPlus.Features.ExtrudeSurfaceCap
 {
     [Message("Select surface to extrude with caps", "Extrude Surface With Caps")]
+    [Help("https://www.codestack.net/labs/solidworks/geometry-plus-plus/user-guide/extrude-surface-cap/")]
     public class ExtrudeSurfaceCapDataModel
     {
         [SelectionBox(swSelectType_e.swSelSKETCHES)]
         [ControlAttribution(swControlBitmapLabelType_e.swBitmapLabel_SelectProfile)]
         [Description("Extrusion profile")]
+        [ControlOptions(height: 60)]
         [ParameterSelection]
         public List<object> Profiles { get; set; }
 

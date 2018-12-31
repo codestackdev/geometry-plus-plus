@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 namespace CodeStack.Community.GeometryPlusPlus.Features.SolidToSurface
 {
     [Message("Select solid bodies to convert to surface bodies", "Convert Solid To Surface")]
+    [Help("https://www.codestack.net/labs/solidworks/geometry-plus-plus/user-guide/convert-solid-to-surface/")]
     public class SolidToSurfaceDataModel
     {
         [SelectionBox(swSelectType_e.swSelSOLIDBODIES)]

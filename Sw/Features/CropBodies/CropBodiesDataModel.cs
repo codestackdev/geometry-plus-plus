@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 namespace CodeStack.Community.GeometryPlusPlus.Features.CropBodies
 {
     [Message("Trims selected surface bodies with selected region", "Trim Surfaces By Region")]
+    [Help("https://www.codestack.net/labs/solidworks/geometry-plus-plus/user-guide/crop-bodies/")]
     public class CropBodiesDataModel
     {
         [SelectionBox(1, swSelectType_e.swSelSURFACEBODIES, swSelectType_e.swSelSOLIDBODIES)]

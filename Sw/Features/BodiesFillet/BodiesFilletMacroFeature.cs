@@ -16,7 +16,7 @@ using SolidWorks.Interop.swconst;
 
 namespace CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet
 {
-    [Options("BodiesFillet")]
+    [Options("BodiesFillet", PROVIDER_MSG)]
     [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.fillet))]
     [SwEx.Common.Attributes.Title("Bodies Fillet")]
     [Description("Adds fillet to bodies in multi-body parts")]
@@ -293,6 +293,11 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet
                 if (isPreview)
                 {
                     CreateBodyForPreview(trackCookie, ref edges, ref body);
+                }
+
+                if (body.GetType() != (int)swBodyType_e.swSolidBody)
+                {
+                    throw new UserErrorException("Fillet can only be added to solid bodies");
                 }
 
                 var faces = body.AddConstantFillets(radius, edges.ToArray()) as object[];

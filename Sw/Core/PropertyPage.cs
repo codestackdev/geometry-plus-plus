@@ -1,4 +1,5 @@
-﻿using CodeStack.SwEx.PMPage;
+﻿using CodeStack.SwEx.Common.Attributes;
+using CodeStack.SwEx.PMPage;
 using CodeStack.SwEx.PMPage.Base;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
@@ -20,6 +21,14 @@ namespace CodeStack.Community.GeometryPlusPlus.Core
     internal delegate void PageClosedDelegate<TPage>(IModelDoc2 model, IFeature feat, IMacroFeatureData featData, TPage data, bool isOk);
     internal delegate void PageApplying<TPage>(ISldWorks app, IModelDoc2 model, TPage data, ClosingArg arg);
 
+    [LoggerOptions(true, AddIn.LOGGER_NAME + ".PMPage")]
+    internal class GeometryFeaturePropertyPage<TModel> : PropertyManagerPageEx<PropertyPageHandler, TModel>
+    {
+        internal GeometryFeaturePropertyPage(ISldWorks app, IPageSpec pageSpec) : base(app, pageSpec)
+        {
+        }
+    }
+
     internal class PropertyPage<TPage>
     {
         internal event PageClosedDelegate<TPage> PageClosed;
@@ -27,7 +36,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Core
 
         internal event Action<ISldWorks, IModelDoc2, TPage> DataChanged;
 
-        private readonly PropertyManagerPageEx<PropertyPageHandler, TPage> m_Page;
+        private readonly GeometryFeaturePropertyPage<TPage> m_Page;
 
         private readonly ISldWorks m_App;
         private IModelDoc2 m_Model;
@@ -39,7 +48,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Core
         {
             m_App = app;
 
-            m_Page = new PropertyManagerPageEx<PropertyPageHandler, TPage>(m_App, spec);
+            m_Page = new GeometryFeaturePropertyPage<TPage> (m_App, spec);
             m_Page.Handler.DataChanged += OnDataChanged;
             m_Page.Handler.Closed += OnPageClosed;
             m_Page.Handler.Closing += OnClosing;

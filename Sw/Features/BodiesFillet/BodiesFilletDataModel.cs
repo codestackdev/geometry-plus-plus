@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 namespace CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet
 {
     [Message("Select solid bodies, faces, edges to add fillets", "Add Fillet To Bodies")]
+    [Help("https://www.codestack.net/labs/solidworks/geometry-plus-plus/user-guide/body-fillet/")]
     public class BodiesFilletPageDataModel
     {
         [SelectionBox(swSelectType_e.swSelSOLIDBODIES, swSelectType_e.swSelEDGES, swSelectType_e.swSelFACES, swSelectType_e.swSelVERTICES)]
