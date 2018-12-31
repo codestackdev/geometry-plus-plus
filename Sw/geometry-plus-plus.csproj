@@ -21,6 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RegisterForComInterop>true</RegisterForComInterop>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,32 +32,39 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CodeStack.SwEx.AddIn, Version=0.3.1.0, Culture=neutral, PublicKeyToken=a46023996d4724e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\CodeStack.SwEx.AddIn.0.3.1\lib\net40\CodeStack.SwEx.AddIn.dll</HintPath>
+    <Reference Include="CodeStack.SwEx.AddIn, Version=0.4.0.0, Culture=neutral, PublicKeyToken=a46023996d4724e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\CodeStack.SwEx.AddIn.0.4.0\lib\net40\CodeStack.SwEx.AddIn.dll</HintPath>
     </Reference>
-    <Reference Include="CodeStack.SwEx.Common, Version=0.9.0.0, Culture=neutral, PublicKeyToken=a46023996d4724e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\CodeStack.SwEx.Common.0.9.0\lib\net40\CodeStack.SwEx.Common.dll</HintPath>
+    <Reference Include="CodeStack.SwEx.Common, Version=0.9.5.0, Culture=neutral, PublicKeyToken=a46023996d4724e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\CodeStack.SwEx.Common.0.9.5\lib\net40\CodeStack.SwEx.Common.dll</HintPath>
     </Reference>
-    <Reference Include="CodeStack.SwEx.MacroFeature, Version=0.3.2.0, Culture=neutral, PublicKeyToken=a46023996d4724e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\CodeStack.SwEx.MacroFeature.0.3.2-beta\lib\net40\CodeStack.SwEx.MacroFeature.dll</HintPath>
+    <Reference Include="CodeStack.SwEx.MacroFeature, Version=0.4.0.0, Culture=neutral, PublicKeyToken=a46023996d4724e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\CodeStack.SwEx.MacroFeature.0.4.0\lib\net40\CodeStack.SwEx.MacroFeature.dll</HintPath>
     </Reference>
-    <Reference Include="CodeStack.SwEx.PMPage, Version=0.4.0.0, Culture=neutral, PublicKeyToken=a46023996d4724e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\CodeStack.SwEx.PMPage.0.4.0\lib\net40\CodeStack.SwEx.PMPage.dll</HintPath>
+    <Reference Include="CodeStack.SwEx.PMPage, Version=0.4.5.0, Culture=neutral, PublicKeyToken=a46023996d4724e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\CodeStack.SwEx.PMPage.0.4.5\lib\net40\CodeStack.SwEx.PMPage.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.13\lib\net46\CommonServiceLocator.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="SolidWorks.Interop.sldworks, Version=26.2.0.63, Culture=neutral, PublicKeyToken=7c4797c3e4eeac03, processorArchitecture=MSIL">
-      <HintPath>..\packages\CodeStack.SwEx.Common.0.9.0\lib\net40\SolidWorks.Interop.sldworks.dll</HintPath>
+      <HintPath>..\packages\CodeStack.SwEx.Common.0.9.5\lib\net40\SolidWorks.Interop.sldworks.dll</HintPath>
+      <Private>True</Private>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="SolidWorks.Interop.swconst, Version=26.2.0.63, Culture=neutral, PublicKeyToken=19f43e188e4269d8, processorArchitecture=MSIL">
-      <HintPath>..\packages\CodeStack.SwEx.Common.0.9.0\lib\net40\SolidWorks.Interop.swconst.dll</HintPath>
+      <HintPath>..\packages\CodeStack.SwEx.Common.0.9.5\lib\net40\SolidWorks.Interop.swconst.dll</HintPath>
+      <Private>True</Private>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="SolidWorks.Interop.swpublished, Version=26.2.0.63, Culture=neutral, PublicKeyToken=89a97bdc5284e6d8, processorArchitecture=MSIL">
-      <HintPath>..\packages\CodeStack.SwEx.Common.0.9.0\lib\net40\SolidWorks.Interop.swpublished.dll</HintPath>
+      <HintPath>..\packages\CodeStack.SwEx.Common.0.9.5\lib\net40\SolidWorks.Interop.swpublished.dll</HintPath>
+      <Private>True</Private>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="SolidWorksTools, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bd18593873b4686d, processorArchitecture=MSIL">
-      <HintPath>..\packages\CodeStack.SwEx.Common.0.9.0\lib\net40\SolidWorksTools.dll</HintPath>
+      <HintPath>..\packages\CodeStack.SwEx.Common.0.9.5\lib\net40\SolidWorksTools.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -68,17 +76,48 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=3.3.1.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.13\lib\net46\Unity.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unity.Configuration, Version=5.2.5.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.13\lib\net46\Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.8.13.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.13\lib\net46\Unity.Container.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.5.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.13\lib\net46\Unity.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unity.Interception.Configuration, Version=5.1.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.13\lib\net46\Unity.Interception.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unity.RegistrationByConvention, Version=2.1.9.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.13\lib\net46\Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation, Version=2.1.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.13\lib\net46\Unity.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xarial.Signal2Go, Version=0.2.0.0, Culture=neutral, PublicKeyToken=6dcec729ca6a1943, processorArchitecture=MSIL">
       <HintPath>..\packages\Xarial.Signal2Go.0.2.0\lib\net461\Xarial.Signal2Go.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Xarial.VPages.Framework, Version=0.3.0.0, Culture=neutral, PublicKeyToken=6dcec729ca6a1943, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xarial.VPages.Framework.0.3.0\lib\net40\Xarial.VPages.Framework.dll</HintPath>
+    <Reference Include="Xarial.VPages.Framework, Version=0.3.1.0, Culture=neutral, PublicKeyToken=6dcec729ca6a1943, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xarial.VPages.Framework.0.3.1\lib\net40\Xarial.VPages.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddIn.cs" />
     <Compile Include="Base\GeometryMacroFeature.cs" />
+    <Compile Include="Core\AboutCommandSpec.cs" />
+    <Compile Include="Core\GeometryFeatureCommandSpec.cs" />
+    <Compile Include="Core\GeometryFeaturesCommandGroupSpec.cs" />
     <Compile Include="Core\PropertyPage.cs" />
     <Compile Include="Exceptions\UserErrorException.cs" />
     <Compile Include="Features\BodiesFillet\BodiesFilletDataModel.cs" />
@@ -87,8 +126,8 @@
     <Compile Include="Features\ExtrudeSurfaceCap\ExtrudeSurfaceCapMacroFeature.cs" />
     <Compile Include="Features\SolidToSurface\SolidToSurfaceDataModel.cs" />
     <Compile Include="Features\SolidToSurface\SolidToSurfaceMacroFeature.cs" />
-    <Compile Include="Features\TrimSurfacesByRegion\TrimSurfacesByRegionDataModel.cs" />
-    <Compile Include="Features\TrimSurfacesByRegion\TrimSurfacesByRegionMacroFeature.cs" />
+    <Compile Include="Features\CropBodies\CropBodiesDataModel.cs" />
+    <Compile Include="Features\CropBodies\CropBodiesMacroFeature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -100,6 +139,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ServicesContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -130,9 +170,6 @@
     <None Include="Resources\geometry-plus-plus.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\trim-surface-region.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +180,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\about-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\crop-bodies.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

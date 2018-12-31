@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="Geometry++" Language="1033" Version="0.1.0.0" Manufacturer="CodeStack" UpgradeCode="{56083FFE-D237-4BC0-A853-BA1C65BC9F68}">
+	<Product Id="*" Name="Geometry++" Language="1033" Version="0.2.0.0" Manufacturer="CodeStack" UpgradeCode="{56083FFE-D237-4BC0-A853-BA1C65BC9F68}">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of Geometry++ is already installed." />
@@ -54,6 +54,15 @@
 			<Component Id="xarial" Guid="{307CCEA0-70A4-43AA-8DB7-26A96A32D2C0}">
 				<File Id="Xarial.VPages.Framework.dllID" Name="Xarial.VPages.Framework.dll" Source="$(var.SourceOutDir)\Xarial.VPages.Framework.dll" />
 				<File Id="Xarial.Signal2Go.dllID" Name="Xarial.Signal2Go.dll" Source="$(var.SourceOutDir)\Xarial.Signal2Go.dll" />
+			</Component>
+			<Component Id="unity" Guid="{29D7AFE1-EB1D-475B-A42D-7DE5B0E1C7B7}">
+				<File Id="Unity.Abstractions.dllID" Name="Unity.Abstractions.dll" Source="$(var.SourceOutDir)\Unity.Abstractions.dll" />
+				<File Id="Unity.Configuration.dllID" Name="Unity.Configuration.dll" Source="$(var.SourceOutDir)\Unity.Configuration.dll" />
+				<File Id="Unity.Container.dllID" Name="Unity.Container.dll" Source="$(var.SourceOutDir)\Unity.Container.dll" />
+				<File Id="Unity.Interception.Configuration.dllID" Name="Unity.Interception.Configuration.dll" Source="$(var.SourceOutDir)\Unity.Interception.Configuration.dll" />
+				<File Id="Unity.Interception.dllID" Name="Unity.Interception.dll" Source="$(var.SourceOutDir)\Unity.Interception.dll" />
+				<File Id="Unity.RegistrationByConvention.dllID" Name="Unity.RegistrationByConvention.dll" Source="$(var.SourceOutDir)\Unity.RegistrationByConvention.dll" />
+				<File Id="Unity.ServiceLocation.dllID" Name="Unity.ServiceLocation.dll" Source="$(var.SourceOutDir)\Unity.ServiceLocation.dll" />
 			</Component>
 		</ComponentGroup>
 	</Fragment>

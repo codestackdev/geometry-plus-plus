@@ -12,14 +12,11 @@ using System.Threading.Tasks;
 
 namespace CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet
 {
-    [PageOptions(typeof(Resources), nameof(Resources.fillet),
-        swPropertyManagerPageOptions_e.swPropertyManagerOptions_CancelButton 
-        | swPropertyManagerPageOptions_e.swPropertyManagerOptions_OkayButton)]
     [Message("Select solid bodies, faces, edges to add fillets", "Add Fillet To Bodies")]
-    [DisplayName("Add Fillet To Bodies")]
+    [Help("https://www.codestack.net/labs/solidworks/geometry-plus-plus/user-guide/body-fillet/")]
     public class BodiesFilletPageDataModel
     {
-        [SelectionBox(swSelectType_e.swSelSOLIDBODIES, swSelectType_e.swSelEDGES, swSelectType_e.swSelFACES)]
+        [SelectionBox(swSelectType_e.swSelSOLIDBODIES, swSelectType_e.swSelEDGES, swSelectType_e.swSelFACES, swSelectType_e.swSelVERTICES)]
         [ControlOptions(height: 60)]
         [ControlAttribution(swControlBitmapLabelType_e.swBitmapLabel_SelectFaceEdge)]
         [Description("Selections to add fillet to (solid bodies, faces or edges)")]
@@ -27,9 +24,9 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet
 
         [ControlAttribution(swControlBitmapLabelType_e.swBitmapLabel_Radius)]
         [NumberBoxOptions(swNumberboxUnitType_e.swNumberBox_Length, 0, 1000, 0.001,
-                true, 0.01, 0.0005, swPropMgrPageNumberBoxStyle_e.swPropMgrPageNumberBoxStyle_Thumbwheel)]
+                false, 0.01, 0.0005, swPropMgrPageNumberBoxStyle_e.swPropMgrPageNumberBoxStyle_Thumbwheel)]
         [Description("Fillet radius")]
-        public double Radius { get; set; }
+        public double Radius { get; set; } = 0.01;
     }
 
     public class BodiesFilletFeatureDataModel
@@ -41,6 +38,6 @@ namespace CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet
         public List<IBody2> EditBodies { get; set; }
 
         [ParameterDimension(swDimensionType_e.swRadialDimension)]
-        public double Radius { get; set; }
+        public double Radius { get; set; } = 0.01;
     }
 }

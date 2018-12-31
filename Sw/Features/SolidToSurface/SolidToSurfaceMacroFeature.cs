@@ -9,14 +9,17 @@ using CodeStack.Community.GeometryPlusPlus.Exceptions;
 using CodeStack.Community.GeometryPlusPlus.Properties;
 using CodeStack.SwEx.MacroFeature.Attributes;
 using System.Runtime.InteropServices;
+using SolidWorks.Interop.swconst;
+using System.ComponentModel;
 
 namespace CodeStack.Community.GeometryPlusPlus.Features.SolidToSurface
 {
-    [Icon(typeof(Resources), nameof(Resources.solid_to_surface))]
-    [Options("SolidToSurface")]
-    [ComVisible(true)]
-    [ProgId(PROG_ID)]
-    [Guid("753D2372-D1AF-4E22-94F2-6E6416394C9C")]
+    [SwEx.Common.Attributes.Icon(typeof(Resources), nameof(Resources.solid_to_surface))]
+    [SwEx.Common.Attributes.Title("Convert Solid To Surface")]
+    [Description("Converts solid bodies to surface bodies")]
+    [Options("SolidToSurface", PROVIDER_MSG)]
+    [SwEx.Common.Attributes.LoggerOptions(true, AddIn.LOGGER_NAME + ".SolidToSurfaceMacroFeature")]
+    [ComVisible(true), ProgId(PROG_ID), Guid("753D2372-D1AF-4E22-94F2-6E6416394C9C")]
     public class SolidToSurfaceMacroFeature : GeometryMacroFeature<SolidToSurfaceDataModel>
     {
         internal const string PROG_ID = "CodeStack.GeometryPlusPlus.SolidToSurfaceMacroFeature";

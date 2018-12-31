@@ -12,10 +12,8 @@ using System.Threading.Tasks;
 
 namespace CodeStack.Community.GeometryPlusPlus.Features.SolidToSurface
 {
-    [PageOptions(typeof(Resources), nameof(Resources.solid_to_surface),
-    swPropertyManagerPageOptions_e.swPropertyManagerOptions_CancelButton | swPropertyManagerPageOptions_e.swPropertyManagerOptions_OkayButton)]
     [Message("Select solid bodies to convert to surface bodies", "Convert Solid To Surface")]
-    [DisplayName("Convert Solid To Surface")]
+    [Help("https://www.codestack.net/labs/solidworks/geometry-plus-plus/user-guide/convert-solid-to-surface/")]
     public class SolidToSurfaceDataModel
     {
         [SelectionBox(swSelectType_e.swSelSOLIDBODIES)]
