@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="Geometry++" Language="1033" Version="0.2.0.0" Manufacturer="CodeStack" UpgradeCode="{56083FFE-D237-4BC0-A853-BA1C65BC9F68}">
+	<Product Id="*" Name="Geometry++" Language="1033" Version="0.3.0.0" Manufacturer="CodeStack" UpgradeCode="{56083FFE-D237-4BC0-A853-BA1C65BC9F68}">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of Geometry++ is already installed." />
