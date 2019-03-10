@@ -19,7 +19,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -221,6 +221,16 @@ namespace CodeStack.Community.GeometryPlusPlus.Properties {
         internal static System.Drawing.Bitmap solid_to_surface {
             get {
                 object obj = ResourceManager.GetObject("solid_to_surface", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap split_body_by_faces {
+            get {
+                object obj = ResourceManager.GetObject("split_body_by_faces", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

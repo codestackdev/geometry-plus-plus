@@ -4,6 +4,7 @@ using CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet;
 using CodeStack.Community.GeometryPlusPlus.Features.CropBodies;
 using CodeStack.Community.GeometryPlusPlus.Features.ExtrudeSurfaceCap;
 using CodeStack.Community.GeometryPlusPlus.Features.SolidToSurface;
+using CodeStack.Community.GeometryPlusPlus.Features.SplitBodyByFaces;
 using SolidWorks.Interop.sldworks;
 using System;
 using System.Collections.Generic;
@@ -85,6 +86,7 @@ namespace CodeStack.Community.GeometryPlusPlus
             yield return new CropBodiesMacroFeature();
             yield return new ExtrudeSurfaceCapMacroFeature();
             yield return new BodiesFilletMacroFeature();
+            yield return new SplitBodyByFacesMacroFeature();
         }
          
         private bool OnHandleError(Exception ex)

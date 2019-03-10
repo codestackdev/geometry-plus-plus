@@ -128,6 +128,8 @@
     <Compile Include="Features\SolidToSurface\SolidToSurfaceMacroFeature.cs" />
     <Compile Include="Features\CropBodies\CropBodiesDataModel.cs" />
     <Compile Include="Features\CropBodies\CropBodiesMacroFeature.cs" />
+    <Compile Include="Features\SplitBodyByFaces\SplitBodyByFacesDataModel.cs" />
+    <Compile Include="Features\SplitBodyByFaces\SplitBodyByFacesMacroFeature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -183,6 +185,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\crop-bodies.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\split-body-by-faces.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
