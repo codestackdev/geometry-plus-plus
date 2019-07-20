@@ -27,7 +27,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Performance.SuspendRebuild
         {
             var docHandler = m_DocsHandler[m_App.IActiveDoc2];
 
-            docHandler.IsDisabled = !docHandler.IsDisabled;
+            docHandler.IsSuspended = !docHandler.IsSuspended;
         }
 
         public override CommandItemEnableState_e OnEnable()
@@ -37,7 +37,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Performance.SuspendRebuild
                 //TODO: use isregistered when added to framework instead of exception
                 var docHandler = m_DocsHandler[m_App.IActiveDoc2];
 
-                if (docHandler.IsDisabled)
+                if (docHandler.IsSuspended)
                 {
                     return CommandItemEnableState_e.SelectEnable;
                 }

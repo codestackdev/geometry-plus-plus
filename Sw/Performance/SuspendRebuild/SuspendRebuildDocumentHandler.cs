@@ -10,13 +10,17 @@ namespace CodeStack.Community.GeometryPlusPlus.Performance.SuspendRebuild
 {
     public class SuspendRebuildDocumentHandler : IDocumentHandler
     {
-        public bool IsDisabled { get; set; }
+        public bool IsSuspended { get; set; }
 
+        private ISldWorks m_App;
         private IModelDoc2 m_Model;
+        private int m_SuspendedRebuildsCount;
 
         public void Init(ISldWorks app, IModelDoc2 model)
         {
+            m_App = app;
             m_Model = model;
+            m_SuspendedRebuildsCount = 0;
 
             if (m_Model is PartDoc)
             {
@@ -53,12 +57,16 @@ namespace CodeStack.Community.GeometryPlusPlus.Performance.SuspendRebuild
             const int S_OK = 0;
             const int S_CANCEL = 1;
 
-            if (IsDisabled)
+            if (IsSuspended)
             {
+                m_SuspendedRebuildsCount++;
+                m_App.IFrameObject().SetStatusBarText(
+                    $"Suspended {m_SuspendedRebuildsCount} rebuild{(m_SuspendedRebuildsCount > 1 ? "s" : "")}");
                 return S_CANCEL;
             }
             else
             {
+                m_SuspendedRebuildsCount = 0;
                 return S_OK;
             }
         }
