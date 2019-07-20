@@ -46,7 +46,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Core
                 throw new NullReferenceException($"{type.FullName} must be decorated with {typeof(DescriptionAttribute).FullName}");
             }
 
-            if (!type.TryGetAttribute<IconAttribute>(a => Icon = new MasterIcon(a.Icon)))
+            if (!type.TryGetAttribute<IconAttribute>(a => Icon = new GeometryIcon(a.Icon)))
             {
                 throw new NullReferenceException($"{type.FullName} must be decorated with {typeof(IconAttribute).FullName}");
             }

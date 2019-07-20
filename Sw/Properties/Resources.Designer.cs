@@ -19,7 +19,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -116,6 +116,42 @@ namespace CodeStack.Community.GeometryPlusPlus.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Features.
+        /// </summary>
+        internal static string CommandGroupFeaturesTitle {
+            get {
+                return ResourceManager.GetString("CommandGroupFeaturesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Features for manipulating solid and surface bodies.
+        /// </summary>
+        internal static string CommandGroupFeaturesTooltip {
+            get {
+                return ResourceManager.GetString("CommandGroupFeaturesTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Performance.
+        /// </summary>
+        internal static string CommandGroupPerformanceTitle {
+            get {
+                return ResourceManager.GetString("CommandGroupPerformanceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Performance improvement features.
+        /// </summary>
+        internal static string CommandGroupPerformanceTooltip {
+            get {
+                return ResourceManager.GetString("CommandGroupPerformanceTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap crop_bodies {
@@ -208,6 +244,16 @@ namespace CodeStack.Community.GeometryPlusPlus.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap performance {
+            get {
+                object obj = ResourceManager.GetObject("performance", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap solid_body {
             get {
                 object obj = ResourceManager.GetObject("solid_body", resourceCulture);
@@ -231,6 +277,16 @@ namespace CodeStack.Community.GeometryPlusPlus.Properties {
         internal static System.Drawing.Bitmap split_body_by_faces {
             get {
                 object obj = ResourceManager.GetObject("split_body_by_faces", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap suspend_rebuild {
+            get {
+                object obj = ResourceManager.GetObject("suspend_rebuild", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

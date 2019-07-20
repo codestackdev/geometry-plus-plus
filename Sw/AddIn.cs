@@ -2,24 +2,13 @@
 using CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet;
 using CodeStack.Community.GeometryPlusPlus.Features.ExtrudeSurfaceCap;
 using CodeStack.Community.GeometryPlusPlus.Features.SolidToSurface;
+using CodeStack.Community.GeometryPlusPlus.Performance.SuspendRebuild;
 using CodeStack.Community.GeometryPlusPlus.Properties;
 using CodeStack.SwEx.AddIn;
 using CodeStack.SwEx.AddIn.Attributes;
-using CodeStack.SwEx.AddIn.Enums;
 using CodeStack.SwEx.Common.Attributes;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Xarial.AppLaunchKit;
-using Xarial.AppLaunchKit.Base.Services;
-using Xarial.AppLaunchKit.Services.About;
-using Xarial.AppLaunchKit.Services.Logger;
-using Xarial.AppLaunchKit.Services.Updates;
 
 namespace CodeStack.Community.GeometryPlusPlus
 {
@@ -37,11 +26,15 @@ namespace CodeStack.Community.GeometryPlusPlus
 
         public override bool OnConnect()
         {
-            m_Services = new ServicesContainer(App);
-
+            var docsHandler = CreateDocumentsHandler<SuspendRebuildDocumentHandler>();
+            
+            m_Services = new ServicesContainer(App, docsHandler);
+            
             var cmdBar = m_Services.GetService<GeometryFeaturesCommandGroupSpec>();
+            var perfCmdBar = m_Services.GetService<PerformanceCommandGroupSpec>();
 
             this.AddCommandGroup(cmdBar);
+            this.AddCommandGroup(perfCmdBar);
 
             return true;
         }

@@ -1,4 +1,5 @@
-﻿using CodeStack.Community.GeometryPlusPlus.Properties;
+﻿using CodeStack.Community.GeometryPlusPlus.Base;
+using CodeStack.Community.GeometryPlusPlus.Properties;
 using CodeStack.SwEx.AddIn.Core;
 using CodeStack.SwEx.AddIn.Enums;
 using CodeStack.SwEx.AddIn.Icons;
@@ -26,7 +27,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Core
             HasToolbar = false;
             HasTabBox = false;
             SupportedWorkspace = swWorkspaceTypes_e.All;
-            Icon = new MasterIcon(Resources.about_icon);
+            Icon = new GeometryIcon(Resources.about_icon);
         }
 
         public override void OnClick()
