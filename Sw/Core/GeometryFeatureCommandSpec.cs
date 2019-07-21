@@ -1,4 +1,11 @@
-﻿using CodeStack.Community.GeometryPlusPlus.Base;
+﻿//**********************
+//Geometry++ - Advanced geometry commands for SOLIDWORKS
+//Copyright(C) 2019 www.codestack.net
+//License: https://github.com/codestack-net-dev/geometry-plus-plus/blob/master/LICENSE
+//Product URL: https://www.codestack.net/labs/solidworks/geometry-plus-plus/
+//**********************
+
+using CodeStack.Community.GeometryPlusPlus.Base;
 using CodeStack.SwEx.AddIn.Core;
 using CodeStack.SwEx.AddIn.Enums;
 using CodeStack.SwEx.AddIn.Icons;
@@ -46,7 +53,7 @@ namespace CodeStack.Community.GeometryPlusPlus.Core
                 throw new NullReferenceException($"{type.FullName} must be decorated with {typeof(DescriptionAttribute).FullName}");
             }
 
-            if (!type.TryGetAttribute<IconAttribute>(a => Icon = new MasterIcon(a.Icon)))
+            if (!type.TryGetAttribute<IconAttribute>(a => Icon = new GeometryIcon(a.Icon)))
             {
                 throw new NullReferenceException($"{type.FullName} must be decorated with {typeof(IconAttribute).FullName}");
             }

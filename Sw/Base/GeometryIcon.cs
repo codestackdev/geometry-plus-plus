@@ -5,17 +5,19 @@
 //Product URL: https://www.codestack.net/labs/solidworks/geometry-plus-plus/
 //**********************
 
+using CodeStack.SwEx.AddIn.Icons;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeStack.Community.GeometryPlusPlus.Exceptions
+namespace CodeStack.Community.GeometryPlusPlus.Base
 {
-    public class UserErrorException : Exception
+    internal class GeometryIcon : MasterIcon
     {
-        public UserErrorException(string error) : base(error)
+        internal GeometryIcon(Image icon) : base(icon)
         {
         }
     }

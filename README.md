@@ -28,3 +28,9 @@ This command allows adding the fillet to entire bodies, faces, edges and vertice
 ![Split Body By Faces](https://www.codestack.net/labs/solidworks/geometry-plus-plus/user-guide/split-body-by-faces/icon.png)
 
 This command allows creating of surface (sheet) bodies from all the faces of input solid or surface bodies.
+
+## Performance
+
+![Suspend Rebuild](https://www.codestack.net/labs/solidworks/geometry-plus-plus/user-guide/suspend-rebuild/icon.png)
+
+This command allows to temporary suspend the rebuild operation in SOLIDWORKS parts, assemblies and drawings allowing to combine multiple rebuild operations into one operation to reduce the rebuild time.

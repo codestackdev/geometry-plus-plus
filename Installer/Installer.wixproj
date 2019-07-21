@@ -21,12 +21,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AddInReg.wxs" />
+    <Compile Include="AddInRegistry.wxs" />
+    <Compile Include="Files.wxs" />
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DirectoryHeatTransform.xslt" />
     <Content Include="Resources\banner.bmp" />
     <Content Include="Resources\dialog.bmp" />
     <Content Include="Resources\eula.rtf" />
@@ -47,12 +50,8 @@
   <Target Name="EnsureWixToolsetInstalled" Condition=" '$(WixTargetsImported)' != 'true' ">
     <Error Text="The WiX Toolset v3.11 (or newer) build tools must be installed to build this project. To download the WiX Toolset, see http://wixtoolset.org/releases/" />
   </Target>
-  <!--
-	To modify your build process, add your task inside one of the targets below and uncomment it.
-	Other similar extension points exist, see Wix.targets.
-	<Target Name="BeforeBuild">
-	</Target>
-	<Target Name="AfterBuild">
-	</Target>
-	-->
+  <Target Name="BeforeBuild">
+    <HeatDirectory Directory="..\Build" Transforms="DirectoryHeatTransform.xslt" PreprocessorVariable="var.SourceOutDir" OutputFile="Files.wxs" ComponentGroupName="FilesRegGroup" DirectoryRefId="INSTALLFOLDER" AutogenerateGuids="true" ToolPath="$(WixToolPath)" SuppressFragments="true" SuppressRegistry="true" SuppressCom="true" SuppressRootDirectory="true" />
+    <HeatFile File="..\Build\CodeStack.Community.GeometryPlusPlus.dll" PreprocessorVariable="var.SourceOutDir" OutputFile="AddInReg.wxs" ComponentGroupName="AddInComRegGroup" DirectoryRefId="INSTALLFOLDER" AutogenerateGuids="true" ToolPath="$(WixToolPath)" SuppressFragments="false" SuppressRegistry="false" SuppressCom="false" SuppressRootDirectory="true" />
+  </Target>
 </Project>

@@ -1,10 +1,19 @@
-﻿using CodeStack.Community.GeometryPlusPlus.Base;
+﻿//**********************
+//Geometry++ - Advanced geometry commands for SOLIDWORKS
+//Copyright(C) 2019 www.codestack.net
+//License: https://github.com/codestack-net-dev/geometry-plus-plus/blob/master/LICENSE
+//Product URL: https://www.codestack.net/labs/solidworks/geometry-plus-plus/
+//**********************
+
+using CodeStack.Community.GeometryPlusPlus.Base;
 using CodeStack.Community.GeometryPlusPlus.Core;
 using CodeStack.Community.GeometryPlusPlus.Features.BodiesFillet;
 using CodeStack.Community.GeometryPlusPlus.Features.CropBodies;
 using CodeStack.Community.GeometryPlusPlus.Features.ExtrudeSurfaceCap;
 using CodeStack.Community.GeometryPlusPlus.Features.SolidToSurface;
 using CodeStack.Community.GeometryPlusPlus.Features.SplitBodyByFaces;
+using CodeStack.Community.GeometryPlusPlus.Performance.SuspendRebuild;
+using CodeStack.SwEx.AddIn.Base;
 using SolidWorks.Interop.sldworks;
 using System;
 using System.Collections.Generic;
@@ -32,8 +41,8 @@ namespace CodeStack.Community.GeometryPlusPlus
 
         private readonly UnityContainer m_Container;
         private readonly ServicesManager m_Kit;
-        
-        public ServicesContainer(ISldWorks app)
+
+        public ServicesContainer(ISldWorks app, IDocumentsHandler<SuspendRebuildDocumentHandler> docsHandler)
         {
             Instance = this;
 
@@ -43,13 +52,21 @@ namespace CodeStack.Community.GeometryPlusPlus
 
             m_Kit = RegisterServicesManager(app);
 
+            m_Container.RegisterInstance(docsHandler);
+
             foreach (var geomFeat in RegisterGeometryFeatures())
             {
                 m_Container.RegisterInstance(geomFeat.GetType().Name, geomFeat);
             }
 
-            m_Container.RegisterType<GeometryFeaturesCommandGroupSpec>(new ContainerControlledLifetimeManager());
+            foreach (var perfCmdType in RegisterPerformanceCommands())
+            {
+                m_Container.RegisterType(typeof(PerformanceCommandSpec), perfCmdType, perfCmdType.Name);
+            }
 
+            m_Container.RegisterType<GeometryFeaturesCommandGroupSpec>(new ContainerControlledLifetimeManager());
+            m_Container.RegisterType<PerformanceCommandGroupSpec>(new ContainerControlledLifetimeManager());
+            
             m_Container.RegisterInstance(m_Kit.GetService<ILogService>());
             m_Container.RegisterInstance(m_Kit.GetService<IAboutApplicationService>());
         }
@@ -87,6 +104,11 @@ namespace CodeStack.Community.GeometryPlusPlus
             yield return new ExtrudeSurfaceCapMacroFeature();
             yield return new BodiesFilletMacroFeature();
             yield return new SplitBodyByFacesMacroFeature();
+        }
+
+        private IEnumerable<Type> RegisterPerformanceCommands()
+        {
+            yield return typeof(SuspendRebuildCommandSpec);
         }
          
         private bool OnHandleError(Exception ex)

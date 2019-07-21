@@ -1,4 +1,11 @@
-﻿using CodeStack.Community.GeometryPlusPlus.Properties;
+﻿//**********************
+//Geometry++ - Advanced geometry commands for SOLIDWORKS
+//Copyright(C) 2019 www.codestack.net
+//License: https://github.com/codestack-net-dev/geometry-plus-plus/blob/master/LICENSE
+//Product URL: https://www.codestack.net/labs/solidworks/geometry-plus-plus/
+//**********************
+
+using CodeStack.Community.GeometryPlusPlus.Properties;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -18,8 +25,8 @@ using Xarial.AppLaunchKit.Services.Attributes;
 
 [assembly: Guid("060b3bc3-0502-4903-96c8-35823ac63a50")]
 
-[assembly: AssemblyVersion("0.3.0.0")]
-[assembly: AssemblyFileVersion("0.3.0.0")]
+[assembly: AssemblyVersion("0.4.0.0")]
+[assembly: AssemblyFileVersion("0.4.0.0")]
 
 [assembly: UpdatesUrl(typeof(Resources), nameof(Resources.UpdateUrl))]
 
