@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <Component Id="AddInRegistry" Directory="INSTALLFOLDER" Guid="{74869559-1017-44C3-B0F1-5E0BDDC5AEAB}">
+      <RegistryValue Root="HKCU" Key="Software\SolidWorks\AddInsStartup\{45B95E54-91F5-4043-BC30-20FD89CAB578}" Value="1" Type="integer" Action="write" />
+      <RegistryValue Root="HKLM" Key="Software\SolidWorks\Addins\{45B95E54-91F5-4043-BC30-20FD89CAB578}" Value="0" Type="integer" Action="write" />
+      <RegistryValue Root="HKLM" Key="Software\SolidWorks\Addins\{45B95E54-91F5-4043-BC30-20FD89CAB578}" Name="Description" Value="Additional geometry functionality for SOLIDWORKS" Type="string" Action="write" />
+      <RegistryValue Root="HKLM" Key="Software\SolidWorks\Addins\{45B95E54-91F5-4043-BC30-20FD89CAB578}" Name="Title" Value="Geometry++" Type="string" Action="write" />
+    </Component>
+	</Fragment>
+</Wix>

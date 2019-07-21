@@ -1,4 +1,11 @@
-﻿using SolidWorks.Interop.sldworks;
+﻿//**********************
+//Geometry++ - Advanced geometry commands for SOLIDWORKS
+//Copyright(C) 2019 www.codestack.net
+//License: https://github.com/codestack-net-dev/geometry-plus-plus/blob/master/LICENSE
+//Product URL: https://www.codestack.net/labs/solidworks/geometry-plus-plus/
+//**********************
+
+using SolidWorks.Interop.sldworks;
 using CodeStack.SwEx.AddIn.Enums;
 using CodeStack.Community.GeometryPlusPlus.Core;
 using CodeStack.Community.GeometryPlusPlus.Base;
